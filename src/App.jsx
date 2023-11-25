@@ -4,6 +4,8 @@ import Square from './components/Square';
 import Circle from './components/Circle';
 import Triangle from './components/Triangle';
 import Controls from './components/Controls';
+import 'leaflet/dist/leaflet.css';
+import './App.css';
 
 const initialPosition = [58.595272, 25.013607]; // Estonia's coordinates
 
