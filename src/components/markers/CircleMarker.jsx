@@ -80,7 +80,9 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
     return () => {
       clearInterval(circleInterval);
     };
-  }, [circleMarker, map, origin, startingTime, destination]); // eslint-disable-line react-hooks/exhaustive-deps
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [circleMarker, map, origin, startingTime]);
 
   return null; // No need to render anything here as the marker is updated dynamically.
 };

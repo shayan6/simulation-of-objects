@@ -75,7 +75,9 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
     return () => {
       clearInterval(squareInterval);
     };
-  }, [squareMarker, map, origin, startingTime, destination]);
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [squareMarker, map, origin, startingTime]);
 
   return null; // No need to render anything here as the marker is updated dynamically.
 };

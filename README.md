@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Flying Objects Simulation with ReactJS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Front-end Developer Test Task
 
-## Available Scripts
+This application is a simulation of flying objects using ReactJS. It includes a map layer, navigation controls, and an interaction layer for adding and controlling different types of objects: SQUARE, CIRCLE, and TRIANGLE.
 
-In the project directory, you can run:
+### Features
 
-### `npm start`
+1. **Map Layer:**
+   - The application features an interactive map layer to provide a visual representation of object movements.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Map Navigation Controls:**
+   - Zooming, moving, and rotating controls are implemented to manipulate the base map for a better view.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Interaction Layer:**
+   - **Add SQUARE Object:**
+      - A SQUARE object starts in the territory of Estonia.
+      - It moves with a random speed between 50 and 80 km/h.
+      - It travels on a straight path on a Great Circle and returns to the starting position.
+      
+   - **Add CIRCLE Object:**
+      - A CIRCLE object starts in the territory of Estonia.
+      - It moves with a random speed between 110 and 300 km/h.
+      - It travels on a circular path with a radius of 10000 – 30000m and disappears after returning to the origin point.
+      
+   - **Add TRIANGLE Object:**
+      - A TRIANGLE object starts in the territory of Estonia.
+      - It moves with a random speed between 1700 and 2200 km/h.
+      - Its destination is a point randomly chosen anywhere on Earth.
+      - It travels on the shortest path from origin to destination point, considering the Earth's curvature.
+      - The element has a lifespan of one hour or ends its life upon arrival at the destination.
 
-### `npm test`
+4. **Object Control Layer:**
+   - Capabilities to display and hide any of the object types: SQUARE, CIRCLE, and TRIANGLE.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Clickable Objects:**
+   - Each individual object of type SQUARE, CIRCLE, and TRIANGLE is clickable.
 
-### `npm run build`
+6. **Object Activation Display:**
+   - Upon activation, display the following information for the clicked object:
+      - Speed
+      - Current location
+      - Time to expire
+      - Current trajectory
+      - A tail of traveled trajectory in the last 60 seconds
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contact
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for checking out my Speak to AI App! If you have any questions or feedback, feel free to reach out.
+- Project Maintainer: [shayanshaikh996@gmail.com](mailto:shayanshaikh996@gmail.com)
