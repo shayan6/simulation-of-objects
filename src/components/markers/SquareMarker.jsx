@@ -10,8 +10,12 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
   const [tail, setTail] = useState([]);
 
   useEffect(() => {
+    const minSpeed = 50;
+    const maxSpeed = 80;
+    // try to test it out on speedSQUARE = 10_000_000; to view moving around the world circle quick
+    const speedSQUARE = Math.floor(Math.random() * (maxSpeed - minSpeed + 1) + minSpeed);
+
     let squareOldPosition = origin;
-    const speedSQUARE = 10_000_000; // Math.floor(Math.random() * 20 + 60);
 
     const squareInterval = setInterval(() => {
       const elapsedTime = Date.now() - startingTime;
@@ -52,7 +56,6 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
 
         setSquareMarker(newSquareMarker);
       } else {
-        
         // Attach a click event listener to the marker
         squareMarker.on('click', () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
