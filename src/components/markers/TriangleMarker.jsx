@@ -6,16 +6,16 @@ import { calculateBearing, speedToDistanceInKm, moveAlongGreatCircle } from '../
 
 const TriangleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
-  const [squareMarker, setSquareMarker] = useState(null);
+  const [triangleMarker, setTriangleMarker] = useState(null);
 
   useEffect(() => {
-    let squareOldPosition = origin;
-    const speedSQUARE = 10_000_000; // Math.floor(Math.random() * 20 + 60);
+    let triangleOldPosition = origin;
+    const speedTRIANGLE = Math.floor(Math.random() * 500 + 1700); // Random speed between 1700 and 2200 km/h
 
-    const squareInterval = setInterval(() => {
+    const triangleInterval = setInterval(() => {
       const elapsedTime = Date.now() - startingTime;
 
-      const distanceTraveled = speedToDistanceInKm(speedSQUARE, elapsedTime);
+      const distanceTraveled = speedToDistanceInKm(speedTRIANGLE, elapsedTime);
 
       const newPosition = moveAlongGreatCircle(
         origin.lat,
@@ -26,37 +26,42 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
       );
 
       const bearing = calculateBearing(
-        squareOldPosition.lat,
-        squareOldPosition.lng,
+        triangleOldPosition.lat,
+        triangleOldPosition.lng,
         newPosition.lat,
         newPosition.lng
       );
 
-      if (!squareMarker) {
+      if (!triangleMarker) {
         // Create marker if it doesn't exist
-        const newSquareMarker = L.marker(newPosition, {
+        const newTriangleMarker = L.marker(newPosition, {
           icon: L.divIcon({
             className: 'custom-icon',
-            html: `<i class="fas fa-arrow-up fa-2x"></i>`,
+            html: `<i class="fas fa-play fa-2x"></i>`, // You can change the icon to represent a triangle
           }),
         });
 
-        setSquareMarker(newSquareMarker);
-        newSquareMarker.addTo(map);
+        setTriangleMarker(newTriangleMarker);
+        newTriangleMarker.addTo(map);
       } else {
         // Update marker position and rotation angle
-        squareMarker.setLatLng(newPosition);
-        squareMarker.setRotationAngle(bearing);
+        triangleMarker.setLatLng(newPosition);
+        triangleMarker.setRotationAngle(bearing);
       }
 
-      squareOldPosition = newPosition;
-    }, 100);
+      triangleOldPosition = newPosition;
+
+      // Check if the triangle has reached its destination
+      if (distanceTraveled >= moveAlongGreatCircle(origin.lat, origin.lng, destination.lat, destination.lng, 0)) {
+        clearInterval(triangleInterval);
+      }
+    }, 1000); // Adjust the interval based on your requirements
 
     // Cleanup function
     return () => {
-      clearInterval(squareInterval);
+      clearInterval(triangleInterval);
     };
-  }, [squareMarker, map, origin, startingTime]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [triangleMarker, map, origin, startingTime, destination]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null; // No need to render anything here as the marker is updated dynamically.
 };
