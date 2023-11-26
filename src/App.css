@@ -4,8 +4,3 @@
   justify-content: center;
   align-items: center;
 }
-#map-container {
-  border: 2px solid black;
-  height: 80svh;
-  width: 80svw;
-}

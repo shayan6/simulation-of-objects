@@ -4,7 +4,7 @@ import L from 'leaflet';
 import 'leaflet-rotatedmarker';
 import { calculateBearing, speedToDistanceInKm, moveAlongGreatCircle } from '../../utils';
 
-const SquareMarker = ({ startingTime, origin, destination }) => {
+const TriangleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
   const [squareMarker, setSquareMarker] = useState(null);
 
@@ -37,7 +37,7 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
         const newSquareMarker = L.marker(newPosition, {
           icon: L.divIcon({
             className: 'custom-icon',
-            html: `<div style="width: 20px; height: 20px; background-color: #000;"></div>`,
+            html: `<i class="fas fa-arrow-up fa-2x"></i>`,
           }),
         });
 
@@ -56,9 +56,9 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
     return () => {
       clearInterval(squareInterval);
     };
-  }, [squareMarker, map, origin, startingTime]);
+  }, [squareMarker, map, origin, startingTime]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null; // No need to render anything here as the marker is updated dynamically.
 };
 
-export default SquareMarker;
+export default TriangleMarker;
