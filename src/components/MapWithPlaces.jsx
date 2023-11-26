@@ -1,10 +1,11 @@
-import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, ZoomControl, useMap } from 'react-leaflet';
 import SquareMarker from './markers/SquareMarker';
 import CircleMarker from './markers/CircleMarker';
 import TriangleMarker from './markers/TriangleMarker';
+import MapControls from './MapControls';
 
-const MapWithPlaces = () => {
+const MapWithPlaces = ({ rotationAngle  }) => {
   const origin = { lat: 59.437, lng: 24.7536 }; // starting from Estonia
   const destination = { lat: 40.7128, lng: -74.006 }; // new york or any destiantion toward
   const startingTime = Date.now();
@@ -13,8 +14,12 @@ const MapWithPlaces = () => {
     <MapContainer
       center={[origin.lat, origin.lng]}
       zoom={2}
-      style={{ border: '2px solid black', height: '80vh', width: '80vw' }}
+      style={{
+        height: '100vh',
+        width: '100vw',
+      }}
     >
+      <MapControls rotationAngle={rotationAngle} />
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='© OpenStreetMap contributors'
