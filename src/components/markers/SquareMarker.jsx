@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-rotatedmarker';
-import { calculateBearing, speedToDistanceInKm, moveAlongGreatCircle } from '../../utils';
+import { calculateBearing, speedToDistanceInKm, moveAlongGreatCircle, getPopupContent } from '../../utils';
 
 const SquareMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
   const [squareMarker, setSquareMarker] = useState(null);
+  const [tail, setTail] = useState([]);
 
   useEffect(() => {
     let squareOldPosition = origin;
@@ -41,15 +42,30 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
           }),
         });
 
-        setSquareMarker(newSquareMarker);
         newSquareMarker.addTo(map);
+
+        // Attach a click event listener to the marker
+        newSquareMarker.on('click', () => {
+          const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
+          newSquareMarker.bindPopup(getPopupContent(speedSQUARE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+        });
+
+        setSquareMarker(newSquareMarker);
       } else {
+        
+        // Attach a click event listener to the marker
+        squareMarker.on('click', () => {
+          const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
+          squareMarker.bindPopup(getPopupContent(speedSQUARE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+        });
+
         // Update marker position and rotation angle
         squareMarker.setLatLng(newPosition);
         squareMarker.setRotationAngle(bearing);
       }
 
       squareOldPosition = newPosition;
+      setTail(prevTail => [...prevTail, `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`]);
     }, 100);
 
     // Cleanup function

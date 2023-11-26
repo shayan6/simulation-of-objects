@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, ZoomControl, useMap } from 'react-leaflet';
+import React from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import SquareMarker from './markers/SquareMarker';
 import CircleMarker from './markers/CircleMarker';
 import TriangleMarker from './markers/TriangleMarker';

@@ -123,3 +123,21 @@ export function moveAlongCircularPath(startLat, startLng, centerLat, centerLng, 
         lng: toDegrees(λ2)
     };
 }
+
+
+// the popup content in string
+export const getPopupContent = (speed, elapsedTime, position, distanceTraveled, bearing, tail) => {
+    return `
+        <div>
+            <h3 style="color: #3498db; font-size: 20px; margin-bottom: 15px;">Marker Information</h3>
+            <hr style="border: 1px solid #ccc; margin: 10px 0;" />
+            <p style="margin: 10px 0;"><strong>Speed:</strong> ${speed} km/h</p>
+            <p style="margin: 10px 0;"><strong>Current Location:</strong> ${position.lat}, ${position.lng}</p>
+            <p style="margin: 10px 0;"><strong>Time to Expire:</strong> ${elapsedTime} ms</p>
+            <p style="margin: 10px 0;"><strong>Current Trajectory:</strong> ${bearing} degrees</p>
+            <p style="margin: 10px 0;"><strong>Distance Traveled:</strong> ${distanceTraveled.toFixed(2)} km</p>
+            <p style="margin: 10px 0;"><strong>Tail of Traveled Trajectory (last 60 seconds):</strong> ${tail.join(', ')}</p>
+        </div>
+    `;
+};
+
