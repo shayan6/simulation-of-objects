@@ -41,8 +41,8 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
         // Create marker if it doesn't exist
         const newSquareMarker = L.marker(newPosition, {
           icon: L.divIcon({
-            className: 'custom-icon',
-            html: `<div style="width: 20px; height: 20px; background-color: #000;"></div>`,
+            className: 'box-icon',
+            html: `<div style="width: 20px; height: 20px; background-color: #6835b8; border-radius: 2px;"></div>`,
           }),
         });
 
@@ -75,7 +75,7 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
     return () => {
       clearInterval(squareInterval);
     };
-  }, [squareMarker, map, origin, startingTime]);
+  }, [squareMarker, map, origin, startingTime, destination]);
 
   return null; // No need to render anything here as the marker is updated dynamically.
 };

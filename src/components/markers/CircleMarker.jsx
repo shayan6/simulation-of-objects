@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet-rotatedmarker';
-import { calculateBearing, speedToDistanceInKm, moveAlongCircularPath, distanceBetween2Points } from '../../utils';
+import { calculateBearing, speedToDistanceInKm, moveAlongCircularPath, distanceBetween2Points, getPopupContent } from '../../utils';
 
 const CircleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
   const [circleMarker, setCircleMarker] = useState(null);
+  const [tail, setTail] = useState([]);
+
   useEffect(() => {
     let circleOldPosition = origin;
-    const speedCIRCLE = 10_000_000; // Math.floor(Math.random() * 20 + 60);
+    // use const speedCIRCLE = 10_000_000; // to view in full speed
+    const speedCIRCLE = Math.floor(Math.random() * (300 - 110 + 1) + 110);
 
     const circleInterval = setInterval(() => {
       const elapsedTime = Date.now() - startingTime;
@@ -24,7 +27,7 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
         clearInterval(circleInterval);
         return;
       }
-      
+
       const newPosition = moveAlongCircularPath(
         origin.lat,
         origin.lng,
@@ -45,26 +48,39 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
         const newCircleMarker = L.marker(newPosition, {
           icon: L.divIcon({
             className: 'custom-icon',
-            html: `<i class="fas fa-circle fa-2x"></i>`, // Use circle icon
+            html: `<i class="fas fa-circle fa-2x" style="color: #439ad3;"></i>`, // Use circle icon
           }),
         });
 
         setCircleMarker(newCircleMarker);
+        
+        // Attach a click event listener to the marker
+        newCircleMarker.on('click', () => {
+          const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
+          newCircleMarker.bindPopup(getPopupContent(speedCIRCLE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+        });
+
         newCircleMarker.addTo(map);
       } else {
+        // Attach a click event listener to the marker
+        circleMarker.on('click', () => {
+          const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
+          circleMarker.bindPopup(getPopupContent(speedCIRCLE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+        });
         // Update marker position and rotation angle
         circleMarker.setLatLng(newPosition);
         circleMarker.setRotationAngle(bearing);
       }
 
       circleOldPosition = newPosition;
+      setTail(prevTail => [...prevTail, `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`]);
     }, 100);
 
     // Cleanup function
     return () => {
       clearInterval(circleInterval);
     };
-  }, [circleMarker, map, origin, startingTime]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [circleMarker, map, origin, startingTime, destination]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null; // No need to render anything here as the marker is updated dynamically.
 };

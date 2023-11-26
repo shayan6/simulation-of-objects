@@ -6,14 +6,14 @@ import TriangleMarker from './markers/TriangleMarker';
 import MapControls from './MapControls';
 
 const MapWithPlaces = ({ rotationAngle  }) => {
-  const origin = { lat: 59.437, lng: 24.7536 }; // starting from Estonia
-  const destination = { lat: 40.7128, lng: -74.006 }; // new york or any destiantion toward
+  const origin = { lat: 59.437, lng: 24.7536 }; // starting from Estonia, Tallinn
+  const destination = { lat: 59.3218031, lng: 24.5520983 }; // Estonia, Saue or any destiantion toward
   const startingTime = Date.now();
 
   return (
     <MapContainer
       center={[origin.lat, origin.lng]}
-      zoom={2}
+      zoom={12}
       style={{
         height: '100vh',
         width: '100vw',
