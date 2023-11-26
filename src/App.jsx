@@ -1,30 +1,15 @@
 import React from 'react';
-import Map from './components/Map';
-import Square from './components/Square';
-import Circle from './components/Circle';
-import Triangle from './components/Triangle';
-import Controls from './components/Controls';
-import 'leaflet/dist/leaflet.css';
-import './App.css';
+import MapWithPlaces from './components/MapWithPlaces';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'leaflet/dist/leaflet.css';  // Import Leaflet CSS
 
-const initialPosition = [58.595272, 25.013607]; // Estonia's coordinates
-
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Map center={initialPosition} zoom={6}>
-        <Square initialPosition={initialPosition} />
-        {/* <Circle initialPosition={initialPosition} />
-        <Triangle initialPosition={initialPosition} /> */}
-      </Map>
-
-      <div className="controls">
-        <Controls objectType="squares" label="Show Squares" />
-        {/* <Controls objectType="circles" label="Show Circles" />
-        <Controls objectType="triangles" label="Show Triangles" /> */}
-      </div>
+      <h1>Map with Places</h1>
+      <MapWithPlaces />
     </div>
   );
-}
+};
 
 export default App;

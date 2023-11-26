@@ -1,4 +1,11 @@
+.container{
+  display: flex;
+  height: 100svh;
+  justify-content: center;
+  align-items: center;
+}
 #map-container {
-  height: 400px;
-  width: 100%;
+  border: 2px solid black;
+  height: 80svh;
+  width: 80svw;
 }
