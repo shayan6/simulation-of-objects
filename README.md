@@ -67,5 +67,5 @@ npm start
 
 ## Contact
 
-Thank you for checking out my Speak to AI App! If you have any questions or feedback, feel free to reach out.
+Thank you for checking out! If you have any questions or feedback, feel free to reach out.
 - Project Maintainer: [shayanshaikh996@gmail.com](mailto:shayanshaikh996@gmail.com)
