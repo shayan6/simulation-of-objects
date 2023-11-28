@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 
-const MapControls = ({ rotationAngle, originLatitude, originLongitude, destinationLatitude, destinationLongitude }) => {
+const MapRotation = ({ rotationAngle, originLatitude, originLongitude, destinationLatitude, destinationLongitude }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const MapControls = ({ rotationAngle, originLatitude, originLongitude, destinati
   return null;
 };
 
-export default MapControls;
+export default MapRotation;
