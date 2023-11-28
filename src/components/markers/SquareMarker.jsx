@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet-rotatedmarker';
-import { calculateBearing, speedToDistanceInKm, moveAlongGreatCircle, getPopupContent } from '../../utils';
+import { useEffect, useState } from "react";
+import { useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet-rotatedmarker";
+import {
+  calculateBearing,
+  speedToDistanceInKm,
+  moveAlongGreatCircle,
+  getPopupContent,
+} from "../../utils";
 
 const SquareMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
@@ -13,7 +18,9 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
     const minSpeed = 50;
     const maxSpeed = 80;
     // try to test it out on speedSQUARE = 10_000_000; to view moving around the world circle quick
-    const speedSQUARE = Math.floor(Math.random() * (maxSpeed - minSpeed + 1) + minSpeed);
+    const speedSQUARE = Math.floor(
+      Math.random() * (maxSpeed - minSpeed + 1) + minSpeed
+    );
 
     let squareOldPosition = origin;
 
@@ -41,7 +48,7 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
         // Create marker if it doesn't exist
         const newSquareMarker = L.marker(newPosition, {
           icon: L.divIcon({
-            className: 'box-icon',
+            className: "box-icon",
             html: `<div style="width: 20px; height: 20px; background-color: #6835b8; border-radius: 2px;"></div>`,
           }),
         });
@@ -49,17 +56,39 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
         newSquareMarker.addTo(map);
 
         // Attach a click event listener to the marker
-        newSquareMarker.on('click', () => {
+        newSquareMarker.on("click", () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-          newSquareMarker.bindPopup(getPopupContent(speedSQUARE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+          newSquareMarker
+            .bindPopup(
+              getPopupContent(
+                speedSQUARE,
+                elapsedTime,
+                newPosition,
+                distanceTraveled,
+                bearing,
+                updatedTail
+              )
+            )
+            .openPopup();
         });
 
         setSquareMarker(newSquareMarker);
       } else {
         // Attach a click event listener to the marker
-        squareMarker.on('click', () => {
+        squareMarker.on("click", () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-          squareMarker.bindPopup(getPopupContent(speedSQUARE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+          squareMarker
+            .bindPopup(
+              getPopupContent(
+                speedSQUARE,
+                elapsedTime,
+                newPosition,
+                distanceTraveled,
+                bearing,
+                updatedTail
+              )
+            )
+            .openPopup();
         });
 
         // Update marker position and rotation angle
@@ -68,15 +97,18 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
       }
 
       squareOldPosition = newPosition;
-      setTail(prevTail => [...prevTail, `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`]);
+      setTail((prevTail) => [
+        ...prevTail,
+        `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`,
+      ]);
     }, 100);
 
     // Cleanup function
     return () => {
       clearInterval(squareInterval);
     };
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [squareMarker, map, origin, startingTime]);
 
   return null; // No need to render anything here as the marker is updated dynamically.

@@ -1,8 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet-rotatedmarker';
-import { calculateBearing, speedToDistanceInKm, moveAlongCircularPath, distanceBetween2Points, getPopupContent } from '../../utils';
+import { useEffect, useState } from "react";
+import { useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet-rotatedmarker";
+import {
+  calculateBearing,
+  speedToDistanceInKm,
+  moveAlongCircularPath,
+  distanceBetween2Points,
+  getPopupContent,
+} from "../../utils";
 
 const CircleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
@@ -17,7 +23,12 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
     const circleInterval = setInterval(() => {
       const elapsedTime = Date.now() - startingTime;
       const distanceTraveled = speedToDistanceInKm(speedCIRCLE, elapsedTime);
-      const circleRadiusKm = distanceBetween2Points(origin.lat, origin.lng, destination.lat, destination.lng);
+      const circleRadiusKm = distanceBetween2Points(
+        origin.lat,
+        origin.lng,
+        destination.lat,
+        destination.lng
+      );
       const circleTotalDistance = 2 * Math.PI * circleRadiusKm;
 
       if (distanceTraveled > circleTotalDistance) {
@@ -47,25 +58,47 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
         // Create marker if it doesn't exist
         const newCircleMarker = L.marker(newPosition, {
           icon: L.divIcon({
-            className: 'custom-icon',
+            className: "custom-icon",
             html: `<i class="fas fa-circle fa-2x" style="color: #439ad3;"></i>`, // Use circle icon
           }),
         });
 
         setCircleMarker(newCircleMarker);
-        
+
         // Attach a click event listener to the marker
-        newCircleMarker.on('click', () => {
+        newCircleMarker.on("click", () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-          newCircleMarker.bindPopup(getPopupContent(speedCIRCLE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+          newCircleMarker
+            .bindPopup(
+              getPopupContent(
+                speedCIRCLE,
+                elapsedTime,
+                newPosition,
+                distanceTraveled,
+                bearing,
+                updatedTail
+              )
+            )
+            .openPopup();
         });
 
         newCircleMarker.addTo(map);
       } else {
         // Attach a click event listener to the marker
-        circleMarker.on('click', () => {
+        circleMarker.on("click", () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-          circleMarker.bindPopup(getPopupContent(speedCIRCLE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+          circleMarker
+            .bindPopup(
+              getPopupContent(
+                speedCIRCLE,
+                elapsedTime,
+                newPosition,
+                distanceTraveled,
+                bearing,
+                updatedTail
+              )
+            )
+            .openPopup();
         });
         // Update marker position and rotation angle
         circleMarker.setLatLng(newPosition);
@@ -73,15 +106,18 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
       }
 
       circleOldPosition = newPosition;
-      setTail(prevTail => [...prevTail, `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`]);
+      setTail((prevTail) => [
+        ...prevTail,
+        `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`,
+      ]);
     }, 100);
 
     // Cleanup function
     return () => {
       clearInterval(circleInterval);
     };
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [circleMarker, map, origin, startingTime]);
 
   return null; // No need to render anything here as the marker is updated dynamically.

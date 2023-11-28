@@ -1,8 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useMap } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet-rotatedmarker';
-import { calculateBearing, speedToDistanceInKm, moveAlongGreatCircle, distanceBetween2Points, getPopupContent } from '../../utils';
+import { useEffect, useState } from "react";
+import { useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet-rotatedmarker";
+import {
+  calculateBearing,
+  speedToDistanceInKm,
+  moveAlongGreatCircle,
+  distanceBetween2Points,
+  getPopupContent,
+} from "../../utils";
 
 const TriangleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
@@ -17,7 +23,12 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
       const elapsedTime = Date.now() - startingTime;
 
       const distanceTraveled = speedToDistanceInKm(speedTRIANGLE, elapsedTime);
-      const triangleTotalDistance = distanceBetween2Points(origin.lat, origin.lng, destination.lat, destination.lng);
+      const triangleTotalDistance = distanceBetween2Points(
+        origin.lat,
+        origin.lng,
+        destination.lat,
+        destination.lng
+      );
 
       const newPosition = moveAlongGreatCircle(
         origin.lat,
@@ -38,26 +49,47 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
         // Create marker if it doesn't exist
         const newTriangleMarker = L.marker(newPosition, {
           icon: L.divIcon({
-            className: 'custom-icon',
+            className: "custom-icon",
             html: `<i class="fas fa-play fa-2x" style="color: #dc1d65;"></i>`, // You can change the icon to represent a triangle
           }),
         });
 
         setTriangleMarker(newTriangleMarker);
-        
+
         // Attach a click event listener to the marker
-        newTriangleMarker.on('click', () => {
+        newTriangleMarker.on("click", () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-          newTriangleMarker.bindPopup(getPopupContent(speedTRIANGLE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+          newTriangleMarker
+            .bindPopup(
+              getPopupContent(
+                speedTRIANGLE,
+                elapsedTime,
+                newPosition,
+                distanceTraveled,
+                bearing,
+                updatedTail
+              )
+            )
+            .openPopup();
         });
 
         newTriangleMarker.addTo(map);
       } else {
-        
         // Attach a click event listener to the marker
-        triangleMarker.on('click', () => {
+        triangleMarker.on("click", () => {
           const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-          triangleMarker.bindPopup(getPopupContent(speedTRIANGLE, elapsedTime, newPosition, distanceTraveled, bearing, updatedTail)).openPopup();
+          triangleMarker
+            .bindPopup(
+              getPopupContent(
+                speedTRIANGLE,
+                elapsedTime,
+                newPosition,
+                distanceTraveled,
+                bearing,
+                updatedTail
+              )
+            )
+            .openPopup();
         });
 
         // Update marker position and rotation angle
@@ -66,7 +98,10 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
       }
 
       triangleOldPosition = newPosition;
-      setTail(prevTail => [...prevTail, `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`]);
+      setTail((prevTail) => [
+        ...prevTail,
+        `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`,
+      ]);
 
       // Check if the triangle has reached its destination
       if (distanceTraveled > triangleTotalDistance) {
@@ -81,8 +116,8 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
     return () => {
       clearInterval(triangleInterval);
     };
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triangleMarker, map, origin, startingTime, destination]);
 
   return null; // No need to render anything here as the marker is updated dynamically.
