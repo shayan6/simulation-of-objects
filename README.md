@@ -46,9 +46,9 @@ This application is a simulation of flying objects using ReactJS. It includes a 
 
 ### Screenshots
 
-![Main page](/images/1.jpg)
+![Main page](./public/images/1.jpg)
 
-![Main page](/images/2.jpg)
+![Main page](./public/images/2.jpg)
 
 
 ## Usage
