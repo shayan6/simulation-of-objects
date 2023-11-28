@@ -8,7 +8,7 @@ const App = () => {
   const [rotationAngle, setRotationAngle] = useState(0);
   const handleRotate = () => {
     // Update the rotation angle, e.g., increment by 45 degrees
-    setRotationAngle(rotationAngle + 45);
+    setRotationAngle(rotationAngle + 90);
   };
 
   return (
