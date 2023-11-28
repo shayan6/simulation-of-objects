@@ -44,6 +44,27 @@ This application is a simulation of flying objects using ReactJS. It includes a 
       - Current trajectory
       - A tail of traveled trajectory in the last 60 seconds
 
+### Screenshots
+
+![Main page](/images/1.jpg)
+
+![Main page](/images/2.jpg)
+
+
+## Usage
+
+```bash
+
+# Navigate to the project directory
+cd simulation-of-objects
+
+# Install dependencies
+npm install
+
+# Run the application
+npm start
+```
+
 ## Contact
 
 Thank you for checking out my Speak to AI App! If you have any questions or feedback, feel free to reach out.
