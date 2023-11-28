@@ -17,10 +17,6 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
   const [tail, setTail] = useState([]);
 
   useEffect(() => {
-    setTail([]);
-  }, [origin, destination]);
-
-  useEffect(() => {
     let triangleOldPosition = origin;
     const speedTRIANGLE = Math.floor(Math.random() * 500 + 1700); // Random speed between 1700 and 2200 km/h
 
@@ -125,7 +121,15 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triangleMarker, map, origin, startingTime, destination]);
 
-  return <TrailComponent tail={tail} color={"#dc1d6580"} />; // No need to render anything here as the marker is updated dynamically.
+  return (
+    <TrailComponent
+      tail={tail}
+      setTail={setTail}
+      origin={origin}
+      destination={destination}
+      color={"#dc1d6580"}
+    />
+  ); // No need to render anything here as the marker is updated dynamically.
 };
 
 export default TriangleMarker;

@@ -17,10 +17,6 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
   const [tail, setTail] = useState([]);
 
   useEffect(() => {
-    setTail([]);
-  }, [origin, destination]);
-
-  useEffect(() => {
     let circleOldPosition = origin;
     // use const speedCIRCLE = 10_000_000; // to view in full speed but comment the remove function
     const speedCIRCLE = Math.floor(Math.random() * (300 - 110 + 1) + 110);
@@ -125,7 +121,15 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [circleMarker, map, origin, startingTime]);
 
-  return <TrailComponent tail={tail} color={"#439ad380"} />; // No need to render anything here as the marker is updated dynamically.
+  return (
+    <TrailComponent
+      tail={tail}
+      setTail={setTail}
+      origin={origin}
+      destination={destination}
+      color={"#439ad380"}
+    />
+  ); // No need to render anything here as the marker is updated dynamically.
 };
 
 export default CircleMarker;

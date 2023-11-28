@@ -16,10 +16,6 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
   const [tail, setTail] = useState([]);
 
   useEffect(() => {
-    setTail([]);
-  }, [origin, destination]);
-
-  useEffect(() => {
     const minSpeed = 50;
     const maxSpeed = 80;
     // try to test it out on speedSQUARE = 100_000; to view moving around the world circle quick
@@ -116,7 +112,15 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [squareMarker, map, origin, startingTime]);
 
-  return <TrailComponent tail={tail} color={"#6835b880"} />; // No need to render anything here as the marker is updated dynamically.
+  return (
+    <TrailComponent
+      tail={tail}
+      setTail={setTail}
+      origin={origin}
+      destination={destination}
+      color={"#6835b880"}
+    />
+  ); // No need to render anything here as the marker is updated dynamically.
 };
 
 export default SquareMarker;
