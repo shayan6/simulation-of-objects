@@ -9,11 +9,16 @@ import {
   distanceBetween2Points,
   getPopupContent,
 } from "../../utils";
+import TrailComponent from "../TrailComponent";
 
 const TriangleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
   const [triangleMarker, setTriangleMarker] = useState(null);
   const [tail, setTail] = useState([]);
+
+  useEffect(() => {
+    setTail([]);
+  }, [origin, destination]);
 
   useEffect(() => {
     let triangleOldPosition = origin;
@@ -100,7 +105,7 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
       triangleOldPosition = newPosition;
       setTail((prevTail) => [
         ...prevTail,
-        `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`,
+        [newPosition.lat.toFixed(5), newPosition.lng.toFixed(5)],
       ]);
 
       // Check if the triangle has reached its destination
@@ -120,7 +125,7 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triangleMarker, map, origin, startingTime, destination]);
 
-  return null; // No need to render anything here as the marker is updated dynamically.
+  return <TrailComponent tail={tail} color={"#dc1d6580"} />; // No need to render anything here as the marker is updated dynamically.
 };
 
 export default TriangleMarker;

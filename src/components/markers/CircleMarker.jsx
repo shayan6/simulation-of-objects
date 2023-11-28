@@ -9,6 +9,7 @@ import {
   distanceBetween2Points,
   getPopupContent,
 } from "../../utils";
+import TrailComponent from "../TrailComponent";
 
 const CircleMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
@@ -16,8 +17,12 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
   const [tail, setTail] = useState([]);
 
   useEffect(() => {
+    setTail([]);
+  }, [origin, destination]);
+
+  useEffect(() => {
     let circleOldPosition = origin;
-    // use const speedCIRCLE = 10_000_000; // to view in full speed
+    // use const speedCIRCLE = 10_000_000; // to view in full speed but comment the remove function
     const speedCIRCLE = Math.floor(Math.random() * (300 - 110 + 1) + 110);
 
     const circleInterval = setInterval(() => {
@@ -108,7 +113,7 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
       circleOldPosition = newPosition;
       setTail((prevTail) => [
         ...prevTail,
-        `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`,
+        [newPosition.lat.toFixed(5), newPosition.lng.toFixed(5)],
       ]);
     }, 100);
 
@@ -120,7 +125,7 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [circleMarker, map, origin, startingTime]);
 
-  return null; // No need to render anything here as the marker is updated dynamically.
+  return <TrailComponent tail={tail} color={"#439ad380"} />; // No need to render anything here as the marker is updated dynamically.
 };
 
 export default CircleMarker;

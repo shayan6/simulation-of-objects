@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 
-const MapRotation = ({ rotationAngle, originLatitude, originLongitude, destinationLatitude, destinationLongitude }) => {
+const MapRotation = ({
+  rotationAngle,
+  originLatitude,
+  originLongitude,
+  destinationLatitude,
+  destinationLongitude,
+}) => {
   const map = useMap();
 
   useEffect(() => {
@@ -13,12 +19,18 @@ const MapRotation = ({ rotationAngle, originLatitude, originLongitude, destinati
       // Cleanup: reset the transformation when the component unmounts
       mapContainer.style.transform = "rotate(0deg)";
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, rotationAngle]);
 
   useEffect(() => {
     map.setView([originLatitude, originLongitude], 13);
-  }, [originLatitude, originLongitude, destinationLatitude, destinationLongitude]);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    originLatitude,
+    originLongitude,
+    destinationLatitude,
+    destinationLongitude,
+  ]);
 
   return null;
 };

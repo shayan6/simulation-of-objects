@@ -8,6 +8,7 @@ import {
   moveAlongGreatCircle,
   getPopupContent,
 } from "../../utils";
+import TrailComponent from "../TrailComponent";
 
 const SquareMarker = ({ startingTime, origin, destination }) => {
   const map = useMap(); // Access the map instance
@@ -15,9 +16,13 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
   const [tail, setTail] = useState([]);
 
   useEffect(() => {
+    setTail([]);
+  }, [origin, destination]);
+
+  useEffect(() => {
     const minSpeed = 50;
     const maxSpeed = 80;
-    // try to test it out on speedSQUARE = 10_000_000; to view moving around the world circle quick
+    // try to test it out on speedSQUARE = 100_000; to view moving around the world circle quick
     const speedSQUARE = Math.floor(
       Math.random() * (maxSpeed - minSpeed + 1) + minSpeed
     );
@@ -99,7 +104,7 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
       squareOldPosition = newPosition;
       setTail((prevTail) => [
         ...prevTail,
-        `[${newPosition.lat.toFixed(5)}, ${newPosition.lng.toFixed(5)}]`,
+        [newPosition.lat.toFixed(5), newPosition.lng.toFixed(5)],
       ]);
     }, 100);
 
@@ -111,7 +116,7 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [squareMarker, map, origin, startingTime]);
 
-  return null; // No need to render anything here as the marker is updated dynamically.
+  return <TrailComponent tail={tail} color={"#6835b880"} />; // No need to render anything here as the marker is updated dynamically.
 };
 
 export default SquareMarker;
