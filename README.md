@@ -1,6 +1,4 @@
-# Flying Objects Simulation with ReactJS
-
-## Front-end Developer Test Task
+## Flying Objects Simulation with ReactJS
 
 This application is a simulation of flying objects using ReactJS. It includes a map layer, navigation controls, and an interaction layer for adding and controlling different types of objects: SQUARE, CIRCLE, and TRIANGLE.
 
