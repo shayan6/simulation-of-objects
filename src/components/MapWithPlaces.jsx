@@ -4,14 +4,19 @@ import SquareMarker from "./markers/SquareMarker";
 import CircleMarker from "./markers/CircleMarker";
 import TriangleMarker from "./markers/TriangleMarker";
 import MapRotation from "./MapRotation";
+import { useSelector } from "react-redux";
 
-const MapWithPlaces = ({
-  rotationAngle,
-  originLatitude,
-  originLongitude,
-  destinationLatitude,
-  destinationLongitude,
-}) => {
+const MapWithPlaces = () => {
+  const rotationAngle = useSelector((state) => state.map.rotationAngle);
+  const originLatitude = useSelector((state) => state.map.originLatitude);
+  const originLongitude = useSelector((state) => state.map.originLongitude);
+  const destinationLatitude = useSelector(
+    (state) => state.map.destinationLatitude
+  );
+  const destinationLongitude = useSelector(
+    (state) => state.map.destinationLongitude
+  );
+
   const origin = { lat: originLatitude, lng: originLongitude };
   const destination = { lat: destinationLatitude, lng: destinationLongitude };
   const startingTime = Date.now();
