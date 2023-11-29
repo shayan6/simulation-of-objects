@@ -23,7 +23,7 @@ const MapWithPlaces = () => {
   const startingTime = Date.now();
 
   return (
-    <div>
+    <>
       <MapContainer
         center={[originLatitude, originLongitude]}
         zoom={zoom}
@@ -60,7 +60,7 @@ const MapWithPlaces = () => {
           destination={destination}
         />
       </MapContainer>
-    </div>
+    </>
   );
 };
 

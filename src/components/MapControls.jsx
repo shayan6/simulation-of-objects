@@ -7,6 +7,8 @@ import {
   setDestinationLatitude,
   setDestinationLongitude,
 } from "../actions/mapSlice";
+import { Button, Input, Row, Col } from "antd";
+import { SyncOutlined } from "@ant-design/icons";
 
 const MapControls = () => {
   const dispatch = useDispatch();
@@ -59,53 +61,53 @@ const MapControls = () => {
 
   return (
     <div className="controls-btn">
-      <button onClick={handleRotate}>
-        <i className="fas fa-sync-alt"></i> <span>Rotate</span>
-      </button>
-      <div className="input-row">
-        <div>
+      <Row gutter={[8, 16]}>
+        <Col span={24}>
+          <Button size="small" onClick={handleRotate}>
+            <SyncOutlined /> <span>Rotate</span>
+          </Button>
+        </Col>
+        <Col span={12}>
           <label htmlFor="originLatitude">Origin Lat:</label>
-          <input
+          <Input
+            size="small"
             type="text"
             id="originLatitude"
             value={originLatitude}
             onChange={handleOriginLatitudeChange}
-            className="small-input"
           />
-        </div>
-        <div>
+        </Col>
+        <Col span={12}>
           <label htmlFor="originLongitude">Origin Lng:</label>
-          <input
+          <Input
+            size="small"
             type="text"
             id="originLongitude"
             value={originLongitude}
             onChange={handleOriginLongitudeChange}
-            className="small-input"
           />
-        </div>
-      </div>
-      <div className="input-row">
-        <div>
+        </Col>
+        <Col span={12}>
           <label htmlFor="destinationLatitude">Destination Lat:</label>
-          <input
+          <Input
+            size="small"
             type="text"
             id="destinationLatitude"
             value={destinationLatitude}
             onChange={handleDestinationLatitudeChange}
-            className="small-input"
           />
-        </div>
-        <div>
+        </Col>
+        <Col span={12}>
           <label htmlFor="destinationLongitude">Destination Lng:</label>
-          <input
+          <Input
+            size="small"
             type="text"
             id="destinationLongitude"
             value={destinationLongitude}
             onChange={handleDestinationLongitudeChange}
-            className="small-input"
           />
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
   );
 };
