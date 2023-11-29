@@ -7,6 +7,7 @@ import MapRotation from "./MapRotation";
 import { useSelector } from "react-redux";
 
 const MapWithPlaces = () => {
+  const zoom = useSelector((state) => state.map.zoom);
   const rotationAngle = useSelector((state) => state.map.rotationAngle);
   const originLatitude = useSelector((state) => state.map.originLatitude);
   const originLongitude = useSelector((state) => state.map.originLongitude);
@@ -25,13 +26,14 @@ const MapWithPlaces = () => {
     <div>
       <MapContainer
         center={[originLatitude, originLongitude]}
-        zoom={12}
+        zoom={zoom}
         style={{
           height: "100vh",
           width: "100vw",
         }}
       >
         <MapRotation
+          zoom={zoom}
           rotationAngle={rotationAngle}
           originLatitude={originLatitude}
           originLongitude={originLongitude}

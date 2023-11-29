@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const mapSlice = createSlice({
   name: 'map',
   initialState: {
+    zoom: 12,
     rotationAngle: 0,
     originLatitude: 59.437,
     originLongitude: 24.7536,

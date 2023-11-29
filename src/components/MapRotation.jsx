@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 
 const MapRotation = ({
+  zoom,
   rotationAngle,
   originLatitude,
   originLongitude,
@@ -23,7 +24,7 @@ const MapRotation = ({
   }, [map, rotationAngle]);
 
   useEffect(() => {
-    map.setView([originLatitude, originLongitude], 13);
+    map.setView([originLatitude, originLongitude], zoom);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     originLatitude,
