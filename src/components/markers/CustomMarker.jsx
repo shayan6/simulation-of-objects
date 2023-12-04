@@ -46,10 +46,24 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed }) => {
           }),
         });
         newObjectMarker.addTo(map);
-        attachClickEvent(newObjectMarker);
+        attachClickEvent(
+          newObjectMarker,
+          speed,
+          elapsedTime,
+          newPosition,
+          distanceTraveled,
+          bearing
+        );
         setCustomMarker(newObjectMarker);
       } else {
-        attachClickEvent(customMarker);
+        attachClickEvent(
+          customMarker,
+          speed,
+          elapsedTime,
+          newPosition,
+          distanceTraveled,
+          bearing
+        );
         customMarker.setLatLng(newPosition);
         customMarker.setRotationAngle(bearing);
       }
@@ -69,13 +83,20 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customMarker, map, origin, startingTime]);
 
-  function attachClickEvent(marker) {
+  function attachClickEvent(
+    marker,
+    speed,
+    elapsedTime,
+    newPosition,
+    distanceTraveled,
+    bearing
+  ) {
     marker.on("click", () => {
       const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
       marker
         .bindPopup(
           getPopupContent(
-            speedSQUARE,
+            speed,
             elapsedTime,
             newPosition,
             distanceTraveled,

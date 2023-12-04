@@ -5,6 +5,7 @@ import CircleMarker from "./markers/CircleMarker";
 import TriangleMarker from "./markers/TriangleMarker";
 import MapRotation from "./MapRotation";
 import { useSelector } from "react-redux";
+import CustomMarker from "./markers/CustomMarker";
 
 const MapWithPlaces = () => {
   const zoom = useSelector((state) => state.map.zoom);
@@ -58,6 +59,13 @@ const MapWithPlaces = () => {
           startingTime={startingTime}
           origin={origin}
           destination={destination}
+        />
+        <CustomMarker
+          startingTime={startingTime}
+          origin={origin}
+          destination={destination}
+          color={'black'}
+          speed={100_000}
         />
       </MapContainer>
     </>
