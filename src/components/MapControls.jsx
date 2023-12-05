@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setRotationAngle,
@@ -9,8 +9,9 @@ import {
 } from "../actions/mapSlice";
 import { Button, Input, Row, Col } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
+import CustomMarkerModal from "./CustomMarkerModal";
 
-const MapControls = () => {
+const MapControls = ({ markers, setMarkers }) => {
   const dispatch = useDispatch();
   const rotationAngle = useSelector((state) => state.map.rotationAngle);
   const originLatitude = useSelector((state) => state.map.originLatitude);
@@ -21,6 +22,11 @@ const MapControls = () => {
   const destinationLongitude = useSelector(
     (state) => state.map.destinationLongitude
   );
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [markerInfo, setMarkerInfo] = useState({
+    color: "black",
+    speed: 100000,
+  });
 
   const handleRotate = () => {
     // Dispatch action to update rotation angle
@@ -59,12 +65,34 @@ const MapControls = () => {
     }
   };
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    setMarkers([...markers, { ...markerInfo }]);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleMarkerInfoChange = (fieldName, value) => {
+    setMarkerInfo({ ...markerInfo, [fieldName]: value });
+  };
+
   return (
     <div className="controls-btn">
       <Row gutter={[8, 16]}>
-        <Col span={24}>
+        <Col span={12}>
           <Button size="small" onClick={handleRotate}>
             <SyncOutlined /> <span>Rotate</span>
+          </Button>
+        </Col>
+        <Col span={12}>
+          <Button type="primary" size="small" onClick={showModal}>
+            Add new marker
           </Button>
         </Col>
         <Col span={12}>
@@ -108,6 +136,13 @@ const MapControls = () => {
           />
         </Col>
       </Row>
+      <CustomMarkerModal
+        isVisible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        onInfoChange={handleMarkerInfoChange}
+        markerInfo={markerInfo}
+      />
     </div>
   );
 };

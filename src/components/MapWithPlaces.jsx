@@ -1,13 +1,13 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
+import { useSelector } from "react-redux";
 import SquareMarker from "./markers/SquareMarker";
 import CircleMarker from "./markers/CircleMarker";
 import TriangleMarker from "./markers/TriangleMarker";
-import MapRotation from "./MapRotation";
-import { useSelector } from "react-redux";
 import CustomMarker from "./markers/CustomMarker";
+import MapRotation from "./MapRotation";
 
-const MapWithPlaces = () => {
+const MapWithPlaces = ({ markers }) => {
   const zoom = useSelector((state) => state.map.zoom);
   const rotationAngle = useSelector((state) => state.map.rotationAngle);
   const originLatitude = useSelector((state) => state.map.originLatitude);
@@ -60,13 +60,16 @@ const MapWithPlaces = () => {
           origin={origin}
           destination={destination}
         />
-        <CustomMarker
-          startingTime={startingTime}
-          origin={origin}
-          destination={destination}
-          color={'black'}
-          speed={100_000}
-        />
+        {markers.map((marker, index) => (
+          <CustomMarker
+            key={index}
+            startingTime={startingTime}
+            origin={origin}
+            destination={destination}
+            color={marker.color}
+            speed={parseFloat(marker.speed)}
+          />
+        ))}
       </MapContainer>
     </>
   );
