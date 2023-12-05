@@ -24,8 +24,9 @@ const MapControls = ({ markers, setMarkers }) => {
   );
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [markerInfo, setMarkerInfo] = useState({
-    color: "black",
+    color: "teal",
     speed: 100000,
+    icon: "plan",
   });
 
   const handleRotate = () => {

@@ -42,7 +42,7 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed }) => {
         const newObjectMarker = L.marker(newPosition, {
           icon: L.divIcon({
             className: "plane-icon",
-            html: `<i class="fas fa-plane" style="color: ${color}; font-size: 20px;"></i>`,
+            html: `<i class="fas fa-plane" style="color: ${color}; font-size: 20px; transform: rotate(-100deg)"></i>`,
           }),
         });
         newObjectMarker.addTo(map);
