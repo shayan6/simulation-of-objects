@@ -41,8 +41,8 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed }) => {
         // Create marker if it doesn't exist
         const newObjectMarker = L.marker(newPosition, {
           icon: L.divIcon({
-            className: "box-icon",
-            html: `<div style="width: 20px; height: 20px; background-color: ${color}; border-radius: 2px;"></div>`,
+            className: "plane-icon",
+            html: `<i class="fas fa-plane" style="color: ${color}; font-size: 20px;"></i>`,
           }),
         });
         newObjectMarker.addTo(map);
