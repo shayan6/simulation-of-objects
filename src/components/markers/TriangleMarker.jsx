@@ -127,7 +127,7 @@ const TriangleMarker = ({ startingTime, origin, destination }) => {
       setTail={setTail}
       origin={origin}
       destination={destination}
-      color={"#dc1d6580"}
+      color={"#dc1d65"}
     />
   ); // No need to render anything here as the marker is updated dynamically.
 };

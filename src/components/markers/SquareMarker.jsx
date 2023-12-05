@@ -118,7 +118,7 @@ const SquareMarker = ({ startingTime, origin, destination }) => {
       setTail={setTail}
       origin={origin}
       destination={destination}
-      color={"#6835b880"}
+      color={"#6835b8"}
     />
   ); // No need to render anything here as the marker is updated dynamically.
 };

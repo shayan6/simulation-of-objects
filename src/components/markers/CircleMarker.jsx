@@ -127,7 +127,7 @@ const CircleMarker = ({ startingTime, origin, destination }) => {
       setTail={setTail}
       origin={origin}
       destination={destination}
-      color={"#439ad380"}
+      color={"#439ad3"}
     />
   ); // No need to render anything here as the marker is updated dynamically.
 };

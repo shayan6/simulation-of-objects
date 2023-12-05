@@ -14,7 +14,10 @@ const TrailComponent = ({ tail, setTail, origin, destination, color }) => {
     if (!map || !tail || tail.length < 2) {
       return;
     }
+
     const trailLine = L.polyline(tail, { color }).addTo(map);
+    trailLine.setStyle({ opacity: 0.5 });
+
     return () => {
       if (trailLine) {
         trailLine.removeFrom(map);
