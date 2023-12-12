@@ -7,8 +7,7 @@ import {
   setDestinationLatitude,
   setDestinationLongitude,
 } from "../actions/mapSlice";
-import { Button, Input, Row, Col } from "antd";
-import { SyncOutlined } from "@ant-design/icons";
+import { Button, Input, Row, Col, Slider } from "antd";
 import CustomMarkerModal from "./CustomMarkerModal";
 
 const MapControls = ({ markers, setMarkers }) => {
@@ -29,9 +28,9 @@ const MapControls = ({ markers, setMarkers }) => {
     icon: "plan",
   });
 
-  const handleRotate = () => {
+  const handleRotate = (value) => {
     // Dispatch action to update rotation angle
-    dispatch(setRotationAngle(rotationAngle + 90));
+    dispatch(setRotationAngle(value));
   };
 
   const handleOriginLatitudeChange = (e) => {
@@ -87,9 +86,13 @@ const MapControls = ({ markers, setMarkers }) => {
     <div className="controls-btn">
       <Row gutter={[8, 16]}>
         <Col span={12}>
-          <Button size="small" onClick={handleRotate}>
-            <SyncOutlined /> <span>Rotate</span>
-          </Button>
+          <Slider
+            min={0}
+            max={360}
+            step={1}
+            value={rotationAngle}
+            onChange={handleRotate}
+          />
         </Col>
         <Col span={12}>
           <Button type="primary" size="small" onClick={showModal}>
