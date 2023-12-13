@@ -10,7 +10,7 @@ import {
 } from "../../utils";
 import TrailComponent from "../TrailComponent";
 
-const CustomMarker = ({ startingTime, origin, destination, color, speed }) => {
+const CustomMarker = ({ startingTime, origin, destination, color, speed, icon }) => {
   const map = useMap();
   const [customMarker, setCustomMarker] = useState(null);
   const [tail, setTail] = useState([]);
@@ -41,8 +41,8 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed }) => {
         // Create marker if it doesn't exist
         const newObjectMarker = L.marker(newPosition, {
           icon: L.divIcon({
-            className: "plane-icon",
-            html: `<i class="fas fa-plane" style="color: ${color}; font-size: 20px; transform: rotate(-100deg)"></i>`,
+            className: "custom-icon",
+            html: icon,
           }),
         });
         newObjectMarker.addTo(map);

@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Form, Input, Select } from "antd";
 import { iconOptions } from "../utils";
+import { SketchPicker } from "react-color";
+
 
 const { Option } = Select;
 
@@ -16,9 +18,10 @@ const CustomMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
     >
       <Form>
         <Form.Item label="Color">
-          <Input
-            value={markerInfo.color}
-            onChange={(e) => onInfoChange("color", e.target.value)}
+          {/* Use the SketchPicker component for color selection */}
+          <SketchPicker
+            color={markerInfo.color}
+            onChange={(color) => onInfoChange("color", color.hex)}
           />
         </Form.Item>
         <Form.Item label="Speed">
@@ -33,7 +36,7 @@ const CustomMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
             onChange={(value) => onInfoChange("icon", value)}
           >
             {options.map((option) => (
-              <Option key={option.value} value={option.value}>
+              <Option key={option.value} value={option.icon}>
                 <span dangerouslySetInnerHTML={{ __html: option.icon }} /> {option.label}
               </Option>
             ))}

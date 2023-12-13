@@ -22,7 +22,6 @@ const MapWithPlaces = ({ markers }) => {
   const origin = { lat: originLatitude, lng: originLongitude };
   const destination = { lat: destinationLatitude, lng: destinationLongitude };
   const startingTime = Date.now();
-
   return (
     <>
       <MapContainer
@@ -66,6 +65,7 @@ const MapWithPlaces = ({ markers }) => {
             startingTime={startingTime}
             origin={origin}
             destination={destination}
+            icon={marker.icon}
             color={marker.color}
             speed={parseFloat(marker.speed)}
           />
