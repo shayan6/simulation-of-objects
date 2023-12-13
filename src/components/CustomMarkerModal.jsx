@@ -12,7 +12,7 @@ const CustomMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
   return (
     <Modal
       title="Custom Marker Configuration"
-      visible={isVisible}
+      open={isVisible}
       onOk={onOk}
       onCancel={onCancel}
     >
