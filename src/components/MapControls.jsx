@@ -85,7 +85,8 @@ const MapControls = ({ markers, setMarkers }) => {
   return (
     <div className="controls-btn">
       <Row gutter={[8, 16]}>
-        <Col span={12}>
+        <Col span={24}>
+          <label htmlFor="originLongitude">Rotate:</label>
           <Slider
             min={0}
             max={360}
@@ -93,11 +94,6 @@ const MapControls = ({ markers, setMarkers }) => {
             value={rotationAngle}
             onChange={handleRotate}
           />
-        </Col>
-        <Col span={12}>
-          <Button type="primary" size="small" onClick={showModal}>
-            Add new marker
-          </Button>
         </Col>
         <Col span={12}>
           <label htmlFor="originLatitude">Origin Lat:</label>
@@ -138,6 +134,11 @@ const MapControls = ({ markers, setMarkers }) => {
             value={destinationLongitude}
             onChange={handleDestinationLongitudeChange}
           />
+        </Col>
+        <Col span={24}>
+          <Button type="primary" size="small" onClick={showModal}>
+            Add new marker
+          </Button>
         </Col>
       </Row>
       <CustomMarkerModal
