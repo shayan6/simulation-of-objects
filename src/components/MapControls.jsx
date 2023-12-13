@@ -25,7 +25,7 @@ const MapControls = ({ markers, setMarkers }) => {
   const [markerInfo, setMarkerInfo] = useState({
     color: "teal",
     speed: 100000,
-    icon: "plan",
+    icon: `<i class="fas fa-plane" style="color: teal; font-size: 20px;"></i>`,
   });
 
   const handleRotate = (value) => {
@@ -89,7 +89,7 @@ const MapControls = ({ markers, setMarkers }) => {
           <label htmlFor="originLongitude">Rotate:</label>
           <Slider
             min={0}
-            max={360}
+            max={180}
             step={1}
             value={rotationAngle}
             onChange={handleRotate}

@@ -16,7 +16,7 @@ const TrailComponent = ({ tail, setTail, origin, destination, color }) => {
     }
 
     const trailLine = L.polyline(tail, { color }).addTo(map);
-    trailLine.setStyle({ opacity: 0.5 });
+    trailLine.setStyle({ opacity: 0.4 });
 
     return () => {
       if (trailLine) {
