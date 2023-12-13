@@ -6,9 +6,9 @@ import {
   setOriginLongitude,
   setDestinationLatitude,
   setDestinationLongitude,
-} from "../actions/mapSlice";
+} from "../../actions/mapSlice";
 import { Button, Input, Row, Col, Slider } from "antd";
-import CustomMarkerModal from "./CustomMarkerModal";
+import CustomMarkerModal from "../CustomMarkerModal";
 
 const MapControls = ({ markers, setMarkers }) => {
   const dispatch = useDispatch();
