@@ -7,10 +7,11 @@ import {
   speedToDistanceInKm,
   moveAlongGreatCircle,
   getPopupContent,
+  moveAlongCircularPath,
 } from "../../utils";
 import TrailComponent from "../TrailComponent";
 
-const CustomMarker = ({ startingTime, origin, destination, color, speed, icon }) => {
+const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
   const map = useMap();
   const [customMarker, setCustomMarker] = useState(null);
   const [tail, setTail] = useState([]);
@@ -22,13 +23,22 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed, icon })
 
       const distanceTraveled = speedToDistanceInKm(speed, elapsedTime);
 
-      const newPosition = moveAlongGreatCircle(
-        origin.lat,
-        origin.lng,
-        destination.lat,
-        destination.lng,
-        distanceTraveled
-      );
+      const newPosition =
+        marker.movement === "greatCircle"
+          ? moveAlongGreatCircle(
+              origin.lat,
+              origin.lng,
+              destination.lat,
+              destination.lng,
+              distanceTraveled
+            )
+          : moveAlongCircularPath(
+              origin.lat,
+              origin.lng,
+              destination.lat,
+              destination.lng,
+              distanceTraveled
+            );
 
       const bearing = calculateBearing(
         objectOldPosition.lat,
@@ -42,7 +52,7 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed, icon })
         const newObjectMarker = L.marker(newPosition, {
           icon: L.divIcon({
             className: "custom-icon",
-            html: icon,
+            html: marker.icon,
           }),
         });
         newObjectMarker.addTo(map);
@@ -114,7 +124,7 @@ const CustomMarker = ({ startingTime, origin, destination, color, speed, icon })
       setTail={setTail}
       origin={origin}
       destination={destination}
-      color={color}
+      color={marker.color}
     />
   );
 };

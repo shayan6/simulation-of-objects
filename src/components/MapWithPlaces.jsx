@@ -65,8 +65,7 @@ const MapWithPlaces = ({ markers }) => {
             startingTime={startingTime}
             origin={origin}
             destination={destination}
-            icon={marker.icon}
-            color={marker.color}
+            marker={marker}
             speed={parseFloat(marker.speed)}
           />
         ))}

@@ -8,7 +8,7 @@ import {
   setDestinationLongitude,
 } from "../../actions/mapSlice";
 import { Button, Input, Row, Col, Slider } from "antd";
-import CustomMarkerModal from "../CustomMarkerModal";
+import CreateMarkerModal from "../create/CreateMarkerModal";
 
 const MapFilters = ({ markers, setMarkers }) => {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const MapFilters = ({ markers, setMarkers }) => {
     color: "teal",
     speed: 100000,
     icon: `<i class="fas fa-plane" style="color: teal; font-size: 20px;"></i>`,
+    movement: 'greatCircle'
   });
 
   const handleRotate = (value) => {
@@ -141,7 +142,7 @@ const MapFilters = ({ markers, setMarkers }) => {
           </Button>
         </Col>
       </Row>
-      <CustomMarkerModal
+      <CreateMarkerModal
         isVisible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
