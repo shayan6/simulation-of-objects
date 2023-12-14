@@ -16,9 +16,9 @@ const MarkerList = ({ markers }) => (
           </Avatar>
           <div>
             <p style={{ margin: 0, fontSize: 16, fontWeight: "bold" }}>
-              Marker {index + 1}
+              Marker {index + 1} ({item.movement})
             </p>
-            <p style={{ margin: 0 }}>Speed: {item.speed}</p>
+            <p style={{ margin: 0 }}>Speed: {item.speed} km</p>
           </div>
         </Space>
       </List.Item>
