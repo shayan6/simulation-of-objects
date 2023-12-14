@@ -10,7 +10,7 @@ const MarkerList = ({ markers }) => (
           <Avatar
             size={40}
             shape="square"
-            style={{ border: `1px solid ${item.color}`, backgroundColor: '#dddd' }}
+            style={{ border: `1px solid ${item.color}`, backgroundColor: '#dddddd80' }}
           >
             <span dangerouslySetInnerHTML={{ __html: item.icon }} />
           </Avatar>
