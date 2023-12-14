@@ -48,6 +48,8 @@ This application is a simulation of flying objects using ReactJS. It includes a 
 
 ![Main page](./public/images/2.jpg)
 
+![Main page](./public/images/3.jpg)
+
 
 ## Usage
 
