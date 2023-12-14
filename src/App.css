@@ -12,11 +12,19 @@ body {
   transform-origin: center center;
   transition: transform 0.5s;
 }
-
 .controls-btn {
+  background-color: white;
   position: absolute;
   width: 30svh;
   top: 6rem; /* Adjust top position as needed */
   left: 10px; /* Adjust left position as needed */
   z-index: 1;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+.controls {
+  padding: 1rem;
+}
+.custom-icon i {
+  transform: rotate(-90deg);
 }
