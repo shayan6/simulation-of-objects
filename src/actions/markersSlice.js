@@ -28,18 +28,11 @@ const markersSlice = createSlice({
   },
   reducers: {
     addMarker: (state, action) => {
-      state.list.push(action.payload);
-    },
-    removeMarker: (state, action) => {
-      state.list = state.list.filter((marker, index) => index !== action.payload);
-    },
-    updateMarker: (state, action) => {
-      const { index, updatedMarker } = action.payload;
-      state.list[index] = updatedMarker;
+      state.list = action.payload;
     },
   },
 });
 
-export const { addMarker, removeMarker, updateMarker } = markersSlice.actions;
+export const { addMarker } = markersSlice.actions;
 
 export default markersSlice.reducer;

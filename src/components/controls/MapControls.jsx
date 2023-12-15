@@ -4,14 +4,14 @@ import { Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import MapFilters from "../filters/MapFilters";
 import { useDispatch, useSelector } from "react-redux";
-import { updateMarker } from "../../actions/markersSlice"; 
+import { addMarker } from "../../actions/markersSlice"; 
 
 const MapControls = () => {
   const dispatch = useDispatch();
   const markers = useSelector((state) => state.markers.list);
   const setMarkers = (newMarkers) => {
     // Dispatch an action to update markers in the Redux store
-    dispatch(updateMarker(newMarkers));
+    dispatch(addMarker(newMarkers));
   };
 
   return (
