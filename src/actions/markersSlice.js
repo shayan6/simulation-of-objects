@@ -15,7 +15,7 @@ const markersSlice = createSlice({
       {
         color: "#6835b8",
         speed: speedSQUARE,
-        icon: `<div style="width: 20px; height: 20px; background-color: #6835b8; border-radius: 2px;"></div>`,
+        icon: `<div style="display: inline-block; width: 20px; height: 20px; background-color: #6835b8; border-radius: 2px;"></div>`,
         movement: "greatCircle",
       },
       {
