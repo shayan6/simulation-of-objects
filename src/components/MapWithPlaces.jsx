@@ -7,7 +7,8 @@ import TriangleMarker from "./markers/TriangleMarker";
 import CustomMarker from "./markers/CustomMarker";
 import MapRotation from "./MapRotation";
 
-const MapWithPlaces = ({ markers }) => {
+const MapWithPlaces = () => {
+  const markers = useSelector((state) => state.markers.list);
   const zoom = useSelector((state) => state.map.zoom);
   const rotationAngle = useSelector((state) => state.map.rotationAngle);
   const originLatitude = useSelector((state) => state.map.originLatitude);

@@ -3,8 +3,17 @@ import MarkerList from "../list/CustomMarkerList";
 import { Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import MapFilters from "../filters/MapFilters";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMarker } from "../../actions/markersSlice"; 
 
-const MapControls = ({ markers, setMarkers }) => {
+const MapControls = () => {
+  const dispatch = useDispatch();
+  const markers = useSelector((state) => state.markers.list);
+  const setMarkers = (newMarkers) => {
+    // Dispatch an action to update markers in the Redux store
+    dispatch(updateMarker(newMarkers));
+  };
+
   return (
     <div className="controls-btn">
       <Tabs defaultActiveKey="1">
