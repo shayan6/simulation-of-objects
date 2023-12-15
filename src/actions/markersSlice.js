@@ -1,14 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const minSpeed = 50;
+const maxSpeed = 80;
+const speedSQUARE = Math.floor(
+  Math.random() * (maxSpeed - minSpeed + 1) + minSpeed
+);
+
+const speedCIRCLE = Math.floor(Math.random() * (300 - 110 + 1) + 110);
+
 const markersSlice = createSlice({
   name: "markers",
   initialState: {
     list: [
       {
-        color: "teal",
-        speed: 100000,
-        icon: `<i class="fas fa-plane" style="color: teal; font-size: 20px;"></i>`,
+        color: "#6835b8",
+        speed: speedSQUARE,
+        icon: `<div style="width: 20px; height: 20px; background-color: #6835b8; border-radius: 2px;"></div>`,
         movement: "greatCircle",
+      },
+      {
+        color: "#439ad3",
+        speed: speedCIRCLE,
+        icon: `<i class="fas fa-circle fa-2x" style="color: #439ad3;"></i>`,
+        movement: "circularPath",
       },
     ],
   },

@@ -1,8 +1,6 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useSelector } from "react-redux";
-import SquareMarker from "./markers/SquareMarker";
-import CircleMarker from "./markers/CircleMarker";
 import TriangleMarker from "./markers/TriangleMarker";
 import CustomMarker from "./markers/CustomMarker";
 import MapRotation from "./MapRotation";
@@ -44,16 +42,6 @@ const MapWithPlaces = () => {
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
-        />
-        <SquareMarker
-          startingTime={startingTime}
-          origin={origin}
-          destination={destination}
-        />
-        <CircleMarker
-          startingTime={startingTime}
-          origin={origin}
-          destination={destination}
         />
         <TriangleMarker
           startingTime={startingTime}
