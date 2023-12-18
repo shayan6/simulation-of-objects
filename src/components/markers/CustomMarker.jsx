@@ -6,7 +6,6 @@ import {
   calculateBearing,
   speedToDistanceInKm,
   moveAlongGreatCircle,
-  getPopupContent,
   moveAlongCircularPath,
   distanceBetween2Points,
 } from "../../utils";
@@ -63,24 +62,8 @@ const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
           }),
         });
         newObjectMarker.addTo(map);
-        attachClickEvent(
-          newObjectMarker,
-          speed,
-          elapsedTime,
-          newPosition,
-          distanceTraveled,
-          bearing
-        );
         setCustomMarker(newObjectMarker);
       } else {
-        attachClickEvent(
-          customMarker,
-          speed,
-          elapsedTime,
-          newPosition,
-          distanceTraveled,
-          bearing
-        );
         customMarker.setLatLng(newPosition);
         customMarker.setRotationAngle(bearing);
       }
@@ -107,31 +90,6 @@ const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customMarker, map, origin, startingTime]);
-
-  function attachClickEvent(
-    marker,
-    speed,
-    elapsedTime,
-    newPosition,
-    distanceTraveled,
-    bearing
-  ) {
-    marker.on("click", () => {
-      const updatedTail = tail.slice(-60); // Display the last 60 seconds of positions
-      marker
-        .bindPopup(
-          getPopupContent(
-            speed,
-            elapsedTime,
-            newPosition,
-            distanceTraveled,
-            bearing,
-            updatedTail
-          )
-        )
-        .openPopup();
-    });
-  }
 
   return (
     <TrailComponent
