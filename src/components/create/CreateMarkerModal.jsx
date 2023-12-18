@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Input, Select } from "antd";
+import { Modal, Form, Input, Select, Checkbox } from "antd";
 import { iconOptions } from "../../utils";
 import { SketchPicker } from "react-color";
 
@@ -50,6 +50,9 @@ const CreateMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
             <Option value="greatCircle">Move along a Great Circle</Option>
             <Option value="circularPath">Move along a Circular Path</Option>
           </Select>
+        </Form.Item>
+        <Form.Item label="Remove on arival">
+          <Checkbox onChange={(e) => onInfoChange("removeOnArival", !e.target.value)}>enable</Checkbox>
         </Form.Item>
       </Form>
     </Modal>

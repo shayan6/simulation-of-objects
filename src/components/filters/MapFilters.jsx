@@ -26,7 +26,8 @@ const MapFilters = ({ markers, setMarkers }) => {
     color: "teal",
     speed: 100000,
     icon: `<i class="fas fa-plane" style="color: teal; font-size: 20px;"></i>`,
-    movement: 'greatCircle'
+    movement: 'greatCircle',
+    removeOnArival: false
   });
 
   const handleRotate = (value) => {

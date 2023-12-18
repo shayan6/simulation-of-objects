@@ -8,6 +8,7 @@ import {
   moveAlongGreatCircle,
   getPopupContent,
   moveAlongCircularPath,
+  distanceBetween2Points,
 } from "../../utils";
 import TrailComponent from "../TrailComponent";
 
@@ -22,6 +23,12 @@ const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
       const elapsedTime = Date.now() - startingTime;
 
       const distanceTraveled = speedToDistanceInKm(speed, elapsedTime);
+      const markerTotalDistance = distanceBetween2Points(
+        origin.lat,
+        origin.lng,
+        destination.lat,
+        destination.lng
+      );
 
       const newPosition =
         marker.movement === "greatCircle"
@@ -83,8 +90,16 @@ const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
         ...prevTail,
         [newPosition.lat.toFixed(5), newPosition.lng.toFixed(5)],
       ]);
+      
+      // Check if the triangle has reached its destination
+      if (distanceTraveled > markerTotalDistance) {
+        if (marker.removeOnArival && customMarker) {
+          customMarker.removeFrom(map);
+        }
+        clearInterval(markerInterval);
+      }
     }, 100);
-
+    
     // Cleanup function
     return () => {
       clearInterval(markerInterval);
