@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setRotationAngle,
   setOriginLatitude,
   setOriginLongitude,
   setDestinationLatitude,
   setDestinationLongitude,
 } from "../../actions/mapSlice";
-import { Button, Input, Row, Col, Slider } from "antd";
+import { Button, Input, Row, Col } from "antd";
 import CreateMarkerModal from "../create/CreateMarkerModal";
 
 const MapFilters = ({ markers, setMarkers }) => {
   const dispatch = useDispatch();
-  const rotationAngle = useSelector((state) => state.map.rotationAngle);
   const originLatitude = useSelector((state) => state.map.originLatitude);
   const originLongitude = useSelector((state) => state.map.originLongitude);
   const destinationLatitude = useSelector(
@@ -29,11 +27,6 @@ const MapFilters = ({ markers, setMarkers }) => {
     movement: 'greatCircle',
     removeOnArival: false
   });
-
-  const handleRotate = (value) => {
-    // Dispatch action to update rotation angle
-    dispatch(setRotationAngle(value));
-  };
 
   const handleOriginLatitudeChange = (e) => {
     const value = parseFloat(e.target.value);
@@ -87,16 +80,6 @@ const MapFilters = ({ markers, setMarkers }) => {
   return (
     <div className="controls">
       <Row gutter={[8, 16]}>
-        <Col span={24}>
-          <label htmlFor="originLongitude">Rotate:</label>
-          <Slider
-            min={0}
-            max={180}
-            step={1}
-            value={rotationAngle}
-            onChange={handleRotate}
-          />
-        </Col>
         <Col span={12}>
           <label htmlFor="originLatitude">Origin Lat:</label>
           <Input

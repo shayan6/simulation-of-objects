@@ -4,16 +4,12 @@ const mapSlice = createSlice({
   name: 'map',
   initialState: {
     zoom: 12,
-    rotationAngle: 0,
     originLatitude: 59.437,
     originLongitude: 24.7536,
     destinationLatitude: 59.3218031,
     destinationLongitude: 24.5520983,
   },
   reducers: {
-    setRotationAngle: (state, action) => {
-      state.rotationAngle = action.payload;
-    },
     setOriginLatitude: (state, action) => {
       state.originLatitude = action.payload;
     },
@@ -30,7 +26,6 @@ const mapSlice = createSlice({
 });
 
 export const {
-  setRotationAngle,
   setOriginLatitude,
   setOriginLongitude,
   setDestinationLatitude,
