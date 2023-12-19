@@ -2,7 +2,6 @@ import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useSelector } from "react-redux";
 import CustomMarker from "./markers/CustomMarker";
-import MapRotation from "./MapRotation";
 
 const MapWithPlaces = () => {
   const markers = useSelector((state) => state.markers.list);
@@ -21,7 +20,7 @@ const MapWithPlaces = () => {
   const destination = { lat: destinationLatitude, lng: destinationLongitude };
   const startingTime = Date.now();
   return (
-    <>
+    <div style={{ transform: `rotate(${rotationAngle}deg)` }} >
       <MapContainer
         center={[originLatitude, originLongitude]}
         zoom={zoom}
@@ -30,14 +29,6 @@ const MapWithPlaces = () => {
           width: "100vw",
         }}
       >
-        <MapRotation
-          zoom={zoom}
-          rotationAngle={rotationAngle}
-          originLatitude={originLatitude}
-          originLongitude={originLongitude}
-          destinationLatitude={destinationLatitude}
-          destinationLongitude={destinationLongitude}
-        />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
@@ -53,7 +44,7 @@ const MapWithPlaces = () => {
           />
         ))}
       </MapContainer>
-    </>
+    </div>
   );
 };
 

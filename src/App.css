@@ -16,9 +16,9 @@ body {
   background-color: white;
   position: absolute;
   width: 30svh;
-  top: 6rem; /* Adjust top position as needed */
+  top: 15rem;
   left: 10px; /* Adjust left position as needed */
-  z-index: 1;
+  z-index: 1000;
   padding: 0.5rem;
   border-radius: 1rem;
 }
