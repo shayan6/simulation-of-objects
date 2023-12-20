@@ -76,8 +76,8 @@ const CustomMarker = ({ startingTime, origin, marker, speed }) => {
       ]);
       
       // Check if the triangle has reached its destination
-      if (marker.removeOnArival && distanceTraveled > markerTotalDistance) {
-        if (customMarker) {
+      if (marker.movement === "greatCircle" && distanceTraveled > markerTotalDistance) {
+        if (marker.removeOnArival && customMarker) {
           customMarker.removeFrom(map);
         }
         clearInterval(markerInterval);
