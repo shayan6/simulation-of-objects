@@ -64,7 +64,7 @@ const CreateMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
           />
         </Form.Item>
         <Form.Item label="Remove on arival">
-          <Checkbox onChange={(e) => onInfoChange("removeOnArival", !e.target.value)}>enable</Checkbox>
+          <Checkbox checked={markerInfo.removeOnArival} onChange={(e) => onInfoChange("removeOnArival", !e.target.value)}>enable</Checkbox>
         </Form.Item>
       </Form>
     </Modal>

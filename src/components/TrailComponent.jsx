@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
 
-const TrailComponent = ({ tail, setTail, origin, destination, color }) => {
+const TrailComponent = ({ tail, setTail, origin, color }) => {
   const map = useMap(); // Access the map instance
 
   useEffect(() => {
     setTail([[origin.lat, origin.lng]]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [origin, destination]);
+  }, [origin]);
 
   useEffect(() => {
     if (!map || !tail || tail.length < 2) {

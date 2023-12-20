@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import "leaflet-rotatedmarker";
 import {
   calculateBearing,
   speedToDistanceInKm,
@@ -10,11 +9,13 @@ import {
   distanceBetween2Points,
 } from "../../utils";
 import TrailComponent from "../TrailComponent";
+import "leaflet-rotatedmarker";
 
-const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
+const CustomMarker = ({ startingTime, origin, marker, speed }) => {
   const map = useMap();
   const [customMarker, setCustomMarker] = useState(null);
   const [tail, setTail] = useState([]);
+  const destination = { lat: marker.destinationLatitude, lng: marker.destinationLongitude };
 
   useEffect(() => {
     let objectOldPosition = origin;
@@ -75,8 +76,8 @@ const CustomMarker = ({ startingTime, origin, destination, marker, speed }) => {
       ]);
       
       // Check if the triangle has reached its destination
-      if (distanceTraveled > markerTotalDistance) {
-        if (marker.removeOnArival && customMarker) {
+      if (marker.removeOnArival && distanceTraveled > markerTotalDistance) {
+        if (customMarker) {
           customMarker.removeFrom(map);
         }
         clearInterval(markerInterval);

@@ -17,10 +17,10 @@ const MapControls = () => {
   return (
     <div className="controls-btn">
       <Tabs defaultActiveKey="1">
-        <TabPane tab="Filters" key="1">
+        <TabPane tab="Add new marker" key="1">
           <MapFilters markers={markers} setMarkers={setMarkers} />
         </TabPane>
-        <TabPane tab="Custom Marker List" key="2">
+        <TabPane tab="Custom marker list" key="2">
           <MarkerList markers={markers} />
         </TabPane>
       </Tabs>
