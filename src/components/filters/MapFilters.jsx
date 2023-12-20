@@ -15,7 +15,7 @@ const MapFilters = ({ markers, setMarkers }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [markerInfo, setMarkerInfo] = useState({
     color: "teal",
-    speed: 100000,
+    speed: 300000, // speed of light
     icon: `<i class="fas fa-plane" style="color: teal; font-size: 20px;"></i>`,
     movement: 'greatCircle',
     removeOnArival: false,
