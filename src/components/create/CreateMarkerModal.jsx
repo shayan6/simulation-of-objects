@@ -51,6 +51,18 @@ const CreateMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
             <Option value="circularPath">Move along a Circular Path</Option>
           </Select>
         </Form.Item>
+        <Form.Item label="Destination latitude">
+          <Input
+            value={markerInfo.destinationLatitude}
+            onChange={(e) => onInfoChange("destinationLatitude", e.target.value)}
+          />
+        </Form.Item>
+        <Form.Item label="Destination longitude">
+          <Input
+            value={markerInfo.destinationLongitude}
+            onChange={(e) => onInfoChange("destinationLongitude", e.target.value)}
+          />
+        </Form.Item>
         <Form.Item label="Remove on arival">
           <Checkbox onChange={(e) => onInfoChange("removeOnArival", !e.target.value)}>enable</Checkbox>
         </Form.Item>

@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setOriginLatitude,
   setOriginLongitude,
-  setDestinationLatitude,
-  setDestinationLongitude,
 } from "../../actions/mapSlice";
+import { destinationLatitude, destinationLongitude } from "../../actions/markersSlice";
 import { Button, Input, Row, Col } from "antd";
 import CreateMarkerModal from "../create/CreateMarkerModal";
 
@@ -13,19 +12,15 @@ const MapFilters = ({ markers, setMarkers }) => {
   const dispatch = useDispatch();
   const originLatitude = useSelector((state) => state.map.originLatitude);
   const originLongitude = useSelector((state) => state.map.originLongitude);
-  const destinationLatitude = useSelector(
-    (state) => state.map.destinationLatitude
-  );
-  const destinationLongitude = useSelector(
-    (state) => state.map.destinationLongitude
-  );
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [markerInfo, setMarkerInfo] = useState({
     color: "teal",
     speed: 100000,
     icon: `<i class="fas fa-plane" style="color: teal; font-size: 20px;"></i>`,
     movement: 'greatCircle',
-    removeOnArival: false
+    removeOnArival: false,
+    destinationLatitude,
+    destinationLongitude
   });
 
   const handleOriginLatitudeChange = (e) => {
@@ -41,22 +36,6 @@ const MapFilters = ({ markers, setMarkers }) => {
     if (!isNaN(value)) {
       // Dispatch action to update origin longitude
       dispatch(setOriginLongitude(value));
-    }
-  };
-
-  const handleDestinationLatitudeChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (!isNaN(value)) {
-      // Dispatch action to update destination latitude
-      dispatch(setDestinationLatitude(value));
-    }
-  };
-
-  const handleDestinationLongitudeChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (!isNaN(value)) {
-      // Dispatch action to update destination longitude
-      dispatch(setDestinationLongitude(value));
     }
   };
 
@@ -98,26 +77,6 @@ const MapFilters = ({ markers, setMarkers }) => {
             id="originLongitude"
             value={originLongitude}
             onChange={handleOriginLongitudeChange}
-          />
-        </Col>
-        <Col span={12}>
-          <label htmlFor="destinationLatitude">Destination Lat:</label>
-          <Input
-            size="small"
-            type="text"
-            id="destinationLatitude"
-            value={destinationLatitude}
-            onChange={handleDestinationLatitudeChange}
-          />
-        </Col>
-        <Col span={12}>
-          <label htmlFor="destinationLongitude">Destination Lng:</label>
-          <Input
-            size="small"
-            type="text"
-            id="destinationLongitude"
-            value={destinationLongitude}
-            onChange={handleDestinationLongitudeChange}
           />
         </Col>
         <Col span={24}>
