@@ -9,8 +9,8 @@ const MapControls = () => {
 
   const dispatch = useDispatch();
   const markers = useSelector((state) => state.markers.list);
+
   const setMarkers = (newMarkers) => {
-    // Dispatch an action to update markers in the Redux store
     dispatch(addMarker(newMarkers));
   };
 
