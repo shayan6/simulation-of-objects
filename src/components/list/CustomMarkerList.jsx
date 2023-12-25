@@ -23,11 +23,11 @@ function MarkerList({ markers }) {
               <p style={{ margin: 0, fontSize: 16, fontWeight: "bold" }}>
                 Marker {index + 1} ({item.movement})
               </p>
-              <p style={{ margin: "10px 0" }}>
+              <p style={{ margin: "5px 0" }}>
                 <strong>Speed:</strong> {item.speed} km
               </p>
-              <p style={{ margin: "10px 0" }}>
-                <strong>Destination Location:</strong> 
+              <p style={{ margin: "5px 0" }}>
+                <strong>Destination:</strong> 
                 {item.destinationLatitude}, {item.destinationLongitude}
               </p>
             </div>
