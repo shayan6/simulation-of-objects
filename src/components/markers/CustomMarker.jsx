@@ -56,7 +56,8 @@ const CustomMarker = ({ startingTime, origin, marker, speed }) => {
 
       if (!customMarker) {
         // Create marker if it doesn't exist
-        const newObjectMarker = L.marker(newPosition, {
+        const newObjectMarker = L.marker(newPosition, {                
+          rotationAngle: -130,
           icon: L.divIcon({
             className: "custom-icon",
             html: marker.icon,
@@ -66,7 +67,10 @@ const CustomMarker = ({ startingTime, origin, marker, speed }) => {
         setCustomMarker(newObjectMarker);
       } else {
         customMarker.setLatLng(newPosition);
-        customMarker.setRotationAngle(bearing);
+        // customMarker.setRotationAngle(bearing);
+        const currentTransform = customMarker.getElement().style.transform || '';
+        // Apply rotation using CSS transform, concatenate with existing transform
+        customMarker.getElement().style.transform = `${currentTransform} rotate(${bearing - 80}deg)`;
       }
 
       objectOldPosition = newPosition;

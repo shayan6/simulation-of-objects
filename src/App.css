@@ -26,6 +26,6 @@ body {
   padding: 1rem;
 }
 .custom-icon i, .custom-icon div {
-  transform: rotate(130deg);
+  /* transform: rotate(130deg); */
   margin: -5px;
 }
