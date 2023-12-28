@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { List, Avatar, Card } from "antd";
 import {
   EditOutlined,
@@ -8,9 +8,17 @@ import {
 import Meta from "antd/es/card/Meta";
 
 function MarkerList({ markers }) {
+  const [dataSource, setDataSource] = useState(markers);
+
+  useEffect(() => {
+    const dataArray = Object.values(markers);
+    const reversedArray = dataArray.slice().reverse();
+    setDataSource(reversedArray);
+  }, [markers]);
+
   return (
     <List
-      dataSource={markers}
+      dataSource={dataSource}
       renderItem={(item, index) => (
         <List.Item>
           <Card
@@ -41,12 +49,10 @@ function MarkerList({ markers }) {
                     <strong>Speed:</strong> {item.speed} km
                   </p>
                   <p>
-                    <strong>Origin:</strong>
-                    {item.originLatitude}, {item.originLongitude}
+                    <strong>Origin:</strong> {item.originCountry}
                   </p>
                   <p>
-                    <strong>Destination:</strong>
-                    {item.destinationLatitude}, {item.destinationLongitude}
+                    <strong>Destination:</strong> {item.destinationCountry}
                   </p>
                 </div>
               }

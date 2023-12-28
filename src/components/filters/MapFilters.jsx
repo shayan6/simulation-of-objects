@@ -5,7 +5,7 @@ import {
   originLatitude,
   originLongitude,
 } from "../../actions/markersSlice";
-import { Button, Row, Col } from "antd";
+import { Button, Row, Col, Typography, Divider } from "antd";
 import CreateMarkerModal from "../create/CreateMarkerModal";
 
 const MapFilters = ({ markers, setMarkers }) => {
@@ -42,10 +42,16 @@ const MapFilters = ({ markers, setMarkers }) => {
   return (
     <div className="controls">
       <Row gutter={[8, 16]}>
-        <Col span={24}>
-          <Button type="primary" size="small" onClick={showModal}>
+        <Col span={12}>
+          <Typography.Text>Markers list</Typography.Text>
+        </Col>
+        <Col span={12}>
+          <Button type="primary" size="middle" onClick={showModal}>
             Add new marker
           </Button>
+        </Col>
+        <Col span={24}>
+          <Divider></Divider>
         </Col>
       </Row>
       <CreateMarkerModal
