@@ -13,6 +13,9 @@ const speedTRIANGLE = Math.floor(Math.random() * 500 + 1700); // Random speed be
 export const destinationLatitude = 59.3218031;
 export const destinationLongitude = 24.5520983;
 
+export const originLatitude = 59.437;
+export const originLongitude = 24.7536;
+
 const markersSlice = createSlice({
   name: "markers",
   initialState: {
@@ -24,6 +27,8 @@ const markersSlice = createSlice({
         movement: "greatCircle",
         destinationLatitude,
         destinationLongitude,
+        originLatitude,
+        originLongitude,
       },
       {
         color: "#439ad3",
@@ -32,6 +37,8 @@ const markersSlice = createSlice({
         movement: "circularPath",
         destinationLatitude,
         destinationLongitude,
+        originLatitude,
+        originLongitude,
       },
       {
         color: "#dc1d65",
@@ -40,6 +47,8 @@ const markersSlice = createSlice({
         movement: "greatCircle",
         destinationLatitude,
         destinationLongitude,
+        originLatitude,
+        originLongitude,
       },
     ],
   },
