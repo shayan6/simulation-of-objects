@@ -22,7 +22,7 @@ const CreateMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
     >
       <Form {...formItemLayout}>
         <Row gutter={16}>
-          <Col span={12}>
+          <Col span={24} sm={12}>
             <Form.Item label="Color">
               {/* Use the SketchPicker component for color selection */}
               <SketchPicker
@@ -49,7 +49,7 @@ const CreateMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
               </Select>
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col span={24} sm={12}>
             <Form.Item label="Movement Type">
               <Select
                 value={markerInfo.movement}
