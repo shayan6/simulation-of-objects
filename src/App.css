@@ -20,7 +20,8 @@ body {
   left: 10px; /* Adjust left position as needed */
   z-index: 1000;
   padding: 0rem;
-  /* border-radius: 1rem; */
+  height: 75vh;
+  overflow-x: auto;
 }
 .controls {
   padding: 1rem;
@@ -28,4 +29,12 @@ body {
 .custom-icon i, .custom-icon div {
   /* transform: rotate(130deg); */
   margin: -5px;
+}
+.marker-card .ant-card-meta-avatar{
+  
+  display: flex;
+  align-items: center;
+}
+.marker-description p {
+  margin: 0;
 }

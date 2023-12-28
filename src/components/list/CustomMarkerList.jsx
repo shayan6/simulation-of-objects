@@ -14,6 +14,7 @@ function MarkerList({ markers }) {
       renderItem={(item, index) => (
         <List.Item>
           <Card
+            className="marker-card"
             actions={[
               <SettingOutlined key="setting" />,
               <EditOutlined key="edit" />,

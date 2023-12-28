@@ -8,7 +8,7 @@ const TrailComponent = ({ tail, setTail, origin, color }) => {
   useEffect(() => {
     setTail([[origin.lat, origin.lng]]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [origin]);
+  }, []);
 
   useEffect(() => {
     if (!map || !tail || tail.length < 2) {
