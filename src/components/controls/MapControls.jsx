@@ -1,6 +1,6 @@
 import React from "react";
 import MarkerList from "../list/CustomMarkerList";
-import { Tabs } from "antd";
+import { Card, Tabs } from "antd";
 import MapFilters from "../filters/MapFilters";
 import { useDispatch, useSelector } from "react-redux";
 import { addMarker } from "../../actions/markersSlice"; 
@@ -28,9 +28,9 @@ const MapControls = () => {
   ];
   
   return (
-    <div className="controls-btn">
+    <Card className="controls-btn">
       <Tabs defaultActiveKey="1" items={items} />
-    </div>
+    </Card>
   );
 };
 

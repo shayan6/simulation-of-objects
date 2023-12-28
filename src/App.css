@@ -15,7 +15,7 @@ body {
 .controls-btn {
   background-color: white;
   position: absolute;
-  width: 30svh;
+  min-width: 30svh;
   top: 10rem;
   left: 10px; /* Adjust left position as needed */
   z-index: 1000;

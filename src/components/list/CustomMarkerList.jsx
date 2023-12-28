@@ -40,6 +40,10 @@ function MarkerList({ markers }) {
                     <strong>Speed:</strong> {item.speed} km
                   </p>
                   <p>
+                    <strong>Origin:</strong>
+                    {item.originLatitude}, {item.originLongitude}
+                  </p>
+                  <p>
                     <strong>Destination:</strong>
                     {item.destinationLatitude}, {item.destinationLongitude}
                   </p>
