@@ -19,8 +19,8 @@ body {
   top: 10rem;
   left: 10px; /* Adjust left position as needed */
   z-index: 1000;
-  padding: 0.5rem;
-  border-radius: 1rem;
+  padding: 0rem;
+  /* border-radius: 1rem; */
 }
 .controls {
   padding: 1rem;

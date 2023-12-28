@@ -1,6 +1,6 @@
 import React from "react";
 import MarkerList from "../list/CustomMarkerList";
-import { Card, Tabs } from "antd";
+import { Card } from "antd";
 import MapFilters from "../filters/MapFilters";
 import { useDispatch, useSelector } from "react-redux";
 import { addMarker } from "../../actions/markersSlice"; 
@@ -13,23 +13,11 @@ const MapControls = () => {
   const setMarkers = (newMarkers) => {
     dispatch(addMarker(newMarkers));
   };
-
-  const items = [
-    {
-      key: '1',
-      label: 'Custom marker list',
-      children: <MarkerList markers={markers} />,
-    },
-    {
-      key: '2',
-      label: 'Add new marker',
-      children: <MapFilters markers={markers} setMarkers={setMarkers} />,
-    },
-  ];
   
   return (
     <Card className="controls-btn">
-      <Tabs defaultActiveKey="1" items={items} />
+      <MapFilters markers={markers} setMarkers={setMarkers} />
+      <MarkerList markers={markers} />
     </Card>
   );
 };
