@@ -8,7 +8,7 @@ import {
   moveAlongCircularPath,
   distanceBetween2Points,
 } from "../../utils";
-import TrailComponent from "../TrailComponent";
+import TrailComponent from "./TrailComponent";
 import "leaflet-rotatedmarker";
 
 const CustomMarker = ({ startingTime, marker, speed }) => {

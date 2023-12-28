@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  addMarker,
   destinationLatitude,
   destinationLongitude,
   originLatitude,
@@ -7,8 +8,12 @@ import {
 } from "../../actions/markersSlice";
 import { Button, Row, Col, Typography, Divider } from "antd";
 import CreateMarkerModal from "../create/CreateMarkerModal";
+import { useDispatch, useSelector } from "react-redux";
 
-const MapFilters = ({ markers, setMarkers }) => {
+const MapFilters = () => {
+  const dispatch = useDispatch();
+  const markers = useSelector((state) => state.markers.list);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [markerInfo, setMarkerInfo] = useState({
     color: "teal",
@@ -28,7 +33,7 @@ const MapFilters = ({ markers, setMarkers }) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    setMarkers([...markers, { ...markerInfo }]);
+    dispatch(addMarker([...markers, { ...markerInfo }]));
   };
 
   const handleCancel = () => {

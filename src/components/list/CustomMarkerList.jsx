@@ -6,8 +6,10 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
+import { useSelector } from "react-redux";
 
-function MarkerList({ markers }) {
+function MarkerList() {
+  const markers = useSelector((state) => state.markers.list);
   const [dataSource, setDataSource] = useState(markers);
 
   useEffect(() => {
