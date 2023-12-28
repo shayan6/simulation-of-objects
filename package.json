@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@uiw/react-color": "^2.0.3",
     "antd": "^5.11.5",
+    "axios": "^1.6.3",
     "leaflet": "^1.9.4",
     "leaflet-rotate": "^0.2.8",
     "leaflet-rotatedmarker": "^0.2.0",

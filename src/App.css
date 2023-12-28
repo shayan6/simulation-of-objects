@@ -31,10 +31,12 @@ body {
   margin: -5px;
 }
 .marker-card .ant-card-meta-avatar{
-  
   display: flex;
   align-items: center;
 }
 .marker-description p {
   margin: 0;
+}
+.marker-form .ant-form-item-label {
+  padding: 0;
 }

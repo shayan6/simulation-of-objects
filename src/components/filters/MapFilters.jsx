@@ -54,6 +54,7 @@ const MapFilters = ({ markers, setMarkers }) => {
         onCancel={handleCancel}
         onInfoChange={handleMarkerInfoChange}
         markerInfo={markerInfo}
+        setMarkerInfo={setMarkerInfo}
       />
     </div>
   );
