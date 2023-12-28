@@ -16,7 +16,7 @@ body {
   background-color: white;
   position: absolute;
   min-width: 30svh;
-  top: 10rem;
+  top: 8rem;
   left: 10px; /* Adjust left position as needed */
   z-index: 1000;
   padding: 0rem;

@@ -6,7 +6,7 @@ import {
   originLatitude,
   originLongitude,
 } from "../../actions/markersSlice";
-import { Button, Row, Col, Typography, Divider } from "antd";
+import { Button, Row, Col, Typography } from "antd";
 import CreateMarkerModal from "../create/CreateMarkerModal";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -47,16 +47,13 @@ const MapFilters = () => {
   return (
     <div className="controls">
       <Row gutter={[8, 16]}>
-        <Col span={12}>
+        <Col span={10}>
           <Typography.Text>Markers list</Typography.Text>
         </Col>
-        <Col span={12}>
+        <Col span={14}>
           <Button type="primary" size="middle" onClick={showModal}>
-            Add new marker
+           + Add new marker
           </Button>
-        </Col>
-        <Col span={24}>
-          <Divider></Divider>
         </Col>
       </Row>
       <CreateMarkerModal
