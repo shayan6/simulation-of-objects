@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { List, Avatar, Card } from "antd";
 import {
   EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
+  RocketOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
 import { useSelector } from "react-redux";
@@ -26,9 +26,9 @@ function MarkerList() {
           <Card
             className="marker-card"
             actions={[
-              <SettingOutlined key="setting" />,
+              <DeleteOutlined key="delete" />,
               <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <RocketOutlined key="view" />,
             ]}
           >
             <Meta
