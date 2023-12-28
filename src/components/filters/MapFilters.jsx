@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid"; // Import uuidv4 function from the uuid library
 import {
   addMarker,
   destinationLatitude,
@@ -7,7 +8,7 @@ import {
   originLongitude,
 } from "../../actions/markersSlice";
 import { Button, Row, Col, Typography } from "antd";
-import CreateMarkerModal from "../create/CreateMarkerModal";
+import CreateMarkerModal from "../modals/CreateMarkerModal";
 import { useDispatch, useSelector } from "react-redux";
 
 const MapFilters = () => {
@@ -33,7 +34,7 @@ const MapFilters = () => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    dispatch(addMarker([...markers, { ...markerInfo }]));
+    dispatch(addMarker([...markers, {  id: uuidv4(), ...markerInfo }]));
   };
 
   const handleCancel = () => {

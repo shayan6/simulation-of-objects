@@ -64,8 +64,7 @@ const markersSlice = createSlice({
   },
   reducers: {
     addMarker: (state, action) => {
-      const newMarker = { id: uuidv4(), ...action.payload }; // Use uuidv4() to generate a unique ID
-      state.list.push(newMarker);
+      state.list = action.payload;
     },
     deleteMarker: (state, action) => {
       const markerIndex = state.list.findIndex(marker => marker.id === action.payload.id);
@@ -83,6 +82,6 @@ const markersSlice = createSlice({
   },
 });
 
-export const { addMarker } = markersSlice.actions;
+export const { addMarker, editMarker, deleteMarker } = markersSlice.actions;
 
 export default markersSlice.reducer;
