@@ -1,37 +1,52 @@
 import React from "react";
-import { List, Avatar, Space } from "antd";
+import { List, Avatar, Card } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import Meta from "antd/es/card/Meta";
 
 function MarkerList({ markers }) {
-  console.log(markers);
   return (
     <List
       dataSource={markers}
       renderItem={(item, index) => (
         <List.Item>
-          <Space>
-            <Avatar
-              size={40}
-              shape="square"
-              style={{
-                border: `1px solid ${item.color}`,
-                backgroundColor: "#dddddd80",
-              }}
-            >
-              <span dangerouslySetInnerHTML={{ __html: item.icon }} />
-            </Avatar>
-            <div>
-              <p style={{ margin: 0, fontSize: 16, fontWeight: "bold" }}>
-                Marker {index + 1} ({item.movement})
-              </p>
-              <p style={{ margin: "5px 0" }}>
-                <strong>Speed:</strong> {item.speed} km
-              </p>
-              <p style={{ margin: "5px 0" }}>
-                <strong>Destination:</strong> 
-                {item.destinationLatitude}, {item.destinationLongitude}
-              </p>
-            </div>
-          </Space>
+          <Card
+            actions={[
+              <SettingOutlined key="setting" />,
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}
+          >
+            <Meta
+              avatar={
+                <Avatar
+                  size={40}
+                  shape="square"
+                  style={{
+                    border: `1px solid ${item.color}`,
+                    backgroundColor: "#dddddd80",
+                  }}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: item.icon }} />
+                </Avatar>
+              }
+              title={`Marker ${index + 1} (${item.movement})`}
+              description={
+                <div className="marker-description">
+                  <p>
+                    <strong>Speed:</strong> {item.speed} km
+                  </p>
+                  <p>
+                    <strong>Destination:</strong>
+                    {item.destinationLatitude}, {item.destinationLongitude}
+                  </p>
+                </div>
+              }
+            />
+          </Card>
         </List.Item>
       )}
     />
