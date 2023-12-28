@@ -3,13 +3,11 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { useSelector } from "react-redux";
 import CustomMarker from "./markers/CustomMarker";
 import 'leaflet-rotate';
+import { originLatitude, originLongitude } from "../actions/markersSlice";
 
 const MapWithPlaces = () => {
   const markers = useSelector((state) => state.markers.list);
   const zoom = useSelector((state) => state.map.zoom);
-  const originLatitude = useSelector((state) => state.map.originLatitude);
-  const originLongitude = useSelector((state) => state.map.originLongitude);
-  const origin = { lat: originLatitude, lng: originLongitude };
   const startingTime = Date.now();
   return (
     <>
@@ -35,7 +33,6 @@ const MapWithPlaces = () => {
           <CustomMarker
             key={index}
             startingTime={startingTime}
-            origin={origin}
             marker={marker}
             speed={parseFloat(marker.speed)}
           />

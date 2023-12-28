@@ -11,10 +11,11 @@ import {
 import TrailComponent from "../TrailComponent";
 import "leaflet-rotatedmarker";
 
-const CustomMarker = ({ startingTime, origin, marker, speed }) => {
+const CustomMarker = ({ startingTime, marker, speed }) => {
   const map = useMap();
   const [customMarker, setCustomMarker] = useState(null);
   const [tail, setTail] = useState([]);
+  const origin = { lat: marker.originLatitude, lng: marker.originLongitude };
   const destination = { lat: marker.destinationLatitude, lng: marker.destinationLongitude };
 
   useEffect(() => {

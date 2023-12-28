@@ -4,22 +4,16 @@ const mapSlice = createSlice({
   name: 'map',
   initialState: {
     zoom: 12,
-    originLatitude: 59.437,
-    originLongitude: 24.7536,
   },
   reducers: {
-    setOriginLatitude: (state, action) => {
-      state.originLatitude = action.payload;
-    },
-    setOriginLongitude: (state, action) => {
-      state.originLongitude = action.payload;
+    setZoom: (state, action) => {
+      state.zoom = action.zoom;
     },
   },
 });
 
 export const {
-  setOriginLatitude,
-  setOriginLongitude,
+  setZoom,
 } = mapSlice.actions;
 
 export default mapSlice.reducer;

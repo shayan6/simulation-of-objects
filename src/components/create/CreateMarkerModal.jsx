@@ -51,6 +51,18 @@ const CreateMarkerModal = ({ isVisible, onOk, onCancel, onInfoChange, markerInfo
             <Option value="circularPath">Move along a Circular Path</Option>
           </Select>
         </Form.Item>
+        <Form.Item label="Origin latitude">
+          <Input
+            value={markerInfo.originLatitude}
+            onChange={(e) => onInfoChange("originLatitude", e.target.value)}
+          />
+        </Form.Item>
+        <Form.Item label="Origin longitude">
+          <Input
+            value={markerInfo.originLongitude}
+            onChange={(e) => onInfoChange("originLongitude", e.target.value)}
+          />
+        </Form.Item>
         <Form.Item label="Destination latitude">
           <Input
             value={markerInfo.destinationLatitude}
