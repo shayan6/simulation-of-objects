@@ -1,35 +1,42 @@
-import { Form, Input, Modal } from "antd";
+import React from "react";
+import { Modal } from "antd";
+import { useDispatch } from "react-redux";
+import { editMarker } from "../../actions/markersSlice"; // Import your editMarker action
+import MarkerForm from "../form/MarkerForm";
 
-const EditMarkerForm = ({ visible, onCreate, onCancel, marker }) => {
-  const [form] = Form.useForm();
+const EditMarkerModal = ({
+  visible,
+  onOk,
+  onCancel,
+  markerInfo,
+  setMarkerInfo,
+}) => {
+  const dispatch = useDispatch();
+
+  const handleInfoChange = (updatedInfo) => {
+    setMarkerInfo(updatedInfo);
+  };
+
+  const handleOk = () => {
+    // Dispatch the editMarker action with the updated marker info
+    dispatch(editMarker({ id: markerInfo.id, updatedMarker: markerInfo }));
+    onOk();
+  };
 
   return (
     <Modal
+      title="Edit Marker Configuration"
       open={visible}
-      title="Edit Marker"
-      okText="Save"
-      cancelText="Cancel"
+      onOk={handleOk}
       onCancel={onCancel}
-      onOk={() => {
-        form
-          .validateFields()
-          .then((values) => {
-            form.resetFields();
-            onCreate(values);
-          })
-          .catch((info) => {
-            console.log("Validate Failed:", info);
-          });
-      }}
+      width={1000}
     >
-      <Form form={form} layout="vertical" initialValues={{ ...marker }}>
-        <Form.Item name="speed" label="Speed">
-          <Input type="number" />
-        </Form.Item>
-        {/* Add other fields as needed */}
-      </Form>
+      <MarkerForm
+        onInfoChange={handleInfoChange}
+        markerInfo={markerInfo}
+      />
     </Modal>
   );
 };
 
-export default EditMarkerForm;
+export default EditMarkerModal;

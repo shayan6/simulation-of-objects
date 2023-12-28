@@ -8,7 +8,7 @@ import {
 import Meta from "antd/es/card/Meta";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteMarker, editMarker } from "../../actions/markersSlice";
-import EditMarkerForm from "../modals/EditMarkerModal";
+import EditMarkerModal from "../modals/EditMarkerModal";
 
 function MarkerList() {
   const markers = useSelector((state) => state.markers.list);
@@ -101,11 +101,12 @@ function MarkerList() {
       />
 
       {editingMarker && (
-        <EditMarkerForm
+        <EditMarkerModal
           visible={editModalVisible}
           onCreate={handleEditModalCreate}
           onCancel={handleEditModalCancel}
-          marker={editingMarker}
+          markerInfo={editingMarker}
+          setMarkerInfo={setEditingMarker}
         />
       )}
     </div>
