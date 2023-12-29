@@ -40,11 +40,7 @@ const MapFilters = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-  const handleMarkerInfoChange = (fieldName, value) => {
-    setMarkerInfo({ ...markerInfo, [fieldName]: value });
-  };
-
+  
   return (
     <div className="controls">
       <Row gutter={[8, 16]}>
@@ -61,7 +57,6 @@ const MapFilters = () => {
         isVisible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
-        onInfoChange={handleMarkerInfoChange}
         markerInfo={markerInfo}
         setMarkerInfo={setMarkerInfo}
       />
