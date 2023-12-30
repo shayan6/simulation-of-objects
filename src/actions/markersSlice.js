@@ -17,48 +17,53 @@ export const destinationLongitude = 24.5520983;
 export const originLatitude = 59.437;
 export const originLongitude = 24.7536;
 
+export const originCountry = 'Estonia'
+export const destinationCountry = 'Estonia';
+
+export const DEFAULT_MARKER = {
+  id: uuidv4(),
+  color: "#6EBB66",
+  speed: 300000, // speed of light
+  icon: `<i class="fas fa-plane" style="color: #6EBB66; font-size: 20px;"></i>`,
+  movement: "greatCircle",
+  originCountry,
+  destinationCountry,
+  destinationLatitude,
+  destinationLongitude,
+  originLatitude,
+  originLongitude,
+  removeOnArival: false,
+};
+
+
 const markersSlice = createSlice({
   name: "markers",
   initialState: {
     list: [
       {
+        ...DEFAULT_MARKER,
         id: uuidv4(),
         color: "#6835b8",
         speed: speedSQUARE,
         icon: `<div style="display: inline-block; width: 20px; height: 20px; background-color: #6835b8; border-radius: 2px;"></div>`,
         movement: "greatCircle",
-        originCountry: 'Estonia',
-        destinationCountry: 'Estonia',
-        destinationLatitude,
-        destinationLongitude,
-        originLatitude,
-        originLongitude,
       },
       {
+        ...DEFAULT_MARKER,
         id: uuidv4(),
         color: "#439ad3",
         speed: speedCIRCLE,
         icon: `<i class="fas fa-circle fa-2x" style="color: #439ad3;"></i>`,
         movement: "circularPath",
-        originCountry: 'Estonia',
-        destinationCountry: 'Estonia',
-        destinationLatitude,
-        destinationLongitude,
-        originLatitude,
-        originLongitude,
       },
       {
+        ...DEFAULT_MARKER,
         id: uuidv4(),
         color: "#dc1d65",
         speed: speedTRIANGLE,
         icon: `<i class="fas fa-play fa-2x" style="color: #dc1d65;"></i>`,
         movement: "greatCircle",
-        originCountry: 'Estonia',
-        destinationCountry: 'Estonia',
-        destinationLatitude,
-        destinationLongitude,
-        originLatitude,
-        originLongitude,
+        removeOnArival: true,
       },
     ],
   },

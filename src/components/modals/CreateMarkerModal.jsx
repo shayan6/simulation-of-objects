@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Modal } from "antd";
-import { fetchAllCountries } from "../../actions/countrySlice";
 import { useDispatch } from "react-redux";
 import { fetchLatLngFromCountry } from "../../actions/locationSlice";
 import MarkerForm from "../form/MarkerForm";
@@ -17,10 +16,6 @@ const CreateMarkerModal = ({
   const handleInfoChange = (updatedInfo) => {
     setMarkerInfo(updatedInfo);
   };
-
-  useEffect(() => {
-    dispatch(fetchAllCountries());
-  }, [dispatch]);
 
   useEffect(() => {
     if (markerInfo?.originCountry) {

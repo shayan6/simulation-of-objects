@@ -69,9 +69,11 @@ const CustomMarker = ({ startingTime, marker, speed }) => {
       } else {
         customMarker.setLatLng(newPosition);
         // customMarker.setRotationAngle(bearing);
-        const currentTransform = customMarker.getElement().style.transform || '';
-        // Apply rotation using CSS transform, concatenate with existing transform
-        customMarker.getElement().style.transform = `${currentTransform} rotate(${bearing - 80}deg)`;
+        const currentTransform = customMarker.getElement()?.style.transform;
+        if (currentTransform) {
+          // Apply rotation using CSS transform, concatenate with existing transform
+          customMarker.getElement().style.transform = `${currentTransform} rotate(${bearing - 80}deg)`;
+        }
       }
 
       objectOldPosition = newPosition;
