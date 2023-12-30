@@ -31,9 +31,11 @@ const MarkerForm = ({ onInfoChange, markerInfo = {} }) => {
           <Form.Item label="Color">
             <SketchPicker
               color={markerInfo.color}
-              onChange={(color) =>
-                onInfoChange({ ...markerInfo, color: color.hex })
-              }
+              onChange={(color) => {
+                const newColor = color.hex;
+                const newIconOptions = iconOptions({ ...markerInfo, color: newColor });
+                onInfoChange({ ...markerInfo, color: newColor, icon: newIconOptions[0].icon });
+              }}
             />
           </Form.Item>
           <Form.Item label="Speed in km">
