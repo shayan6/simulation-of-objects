@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import uuidv4 function from the uuid library
 import {
   addMarker,
@@ -34,10 +34,6 @@ const MapFilters = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-  useEffect(() => {
-    console.log(markerInfo);
-  }, [markerInfo]);
 
   return (
     <div className="controls">
