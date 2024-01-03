@@ -12,12 +12,9 @@ const MapWithPlaces = () => {
   return (
     <>
       <MapContainer
+        className="map"
         center={[originLatitude, originLongitude]}
         zoom={zoom}
-        style={{
-          height: "100vh",
-          width: "100vw",
-        }}
         rotate={true}
         touchRotate={true}
         rotateControl={{
@@ -29,9 +26,9 @@ const MapWithPlaces = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
         />
-        {markers.map((marker, index) => (
+        {markers.map((marker) => (
           <CustomMarker
-            key={index}
+            key={marker.id}
             startingTime={startingTime}
             marker={marker}
             speed={parseFloat(marker.speed)}

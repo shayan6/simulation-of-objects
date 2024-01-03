@@ -1,6 +1,10 @@
 body {
   margin: 0 auto;
 }
+.map {
+  height: 100vh;
+  width: 100vw;
+}
 .container{
   display: flex;
   height: 100svh;
