@@ -54,7 +54,7 @@ const EditMarkerModal = ({
     <Modal
       title="Edit Marker Configuration"
       open={visible}
-      onOk={onCreate}
+      onOk={() => onCreate(markerInfo)}
       onCancel={onCancel}
       width={1000}
     >
